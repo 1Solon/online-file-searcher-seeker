@@ -1,4 +1,3 @@
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -6,10 +5,13 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:8081"
 };
 
 app.use(cors(corsOptions));
+
+const db = require("./app/models");
+db.sequelize.sync();
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -19,11 +21,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to bezkoder application." });
+  res.json({ message: "Welcome to Nicholas, Abraham, and Saul's application." });
 });
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });

@@ -5,7 +5,7 @@ import "./App.css";
 
 import AddTutorial from "./components/add-tutorial.component";
 import Tutorial from "./components/tutorial.component";
-import TutorialsList from "./components/tutorials-list.component";
+import TutorialsList from "./components/tutorial-list.component";
 
 class App extends Component {
   render() {
