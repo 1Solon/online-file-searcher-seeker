@@ -34,3 +34,20 @@ service:
       - backend
       - frontend
   
+  client:
+    depends_on: 
+      server
+    build:
+      context: ./client
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+      ports:
+        - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+      networks:
+        - frontend  
+volumes: 
+  db:
+
+networks:
+  backend:
+  frontend:
