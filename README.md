@@ -1,6 +1,6 @@
 # Start / Build
 1. Go to main directory
-2. run "docker-compose up"
+2. run "docker-compose up --build"
 3. Done!
 
 # Accessing website
