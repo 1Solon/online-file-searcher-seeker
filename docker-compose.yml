@@ -1,11 +1,14 @@
 version: '3.8'
 
+#Variables used for our database
 x-common-variables: &common-variables
   MYSQL_DATABASE: books
   MYSQL_USER: MYSQL_USER
   MYSQL_PASSWORD: MYSQL_PASSWORD
 
 services:
+
+  #Starts our mysql database using above variables and a pre-built image
   mysql_db:
     image: mysql
     restart: always
@@ -20,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
       MYSQL_HOST: localhost
 
-
+  #Starts Nginx in reverse proxy mode, so we can hot edit, Nginx also handles communication between our containers
   nginx:
     depends_on:
       - api
@@ -32,6 +35,7 @@ services:
     ports:
       - "3050:80"
 
+  #Our server, handles the processing of our requests (Node.js with Express)
   api:
     build:
       dockerfile: Dockerfile
@@ -45,7 +49,7 @@ services:
       <<: *common-variables
       MYSQL_HOST_IP: mysql_db
 
-
+  #Our client, runs react, setup to reload each time we ctrl+s (hot reloading!)
   client:
     stdin_open: true
     environment:
@@ -56,5 +60,4 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
-
-
+      

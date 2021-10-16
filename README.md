@@ -5,4 +5,4 @@
 
 # Accessing website
 1. Navigate to your browser
-2. Type "localhost:8888"
+2. Type "localhost:3050"

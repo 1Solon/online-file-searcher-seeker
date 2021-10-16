@@ -1,3 +1,4 @@
+# Creates our client server
 FROM node:alpine
 WORKDIR /app
 COPY package.json ./
