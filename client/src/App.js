@@ -51,7 +51,7 @@ class App extends Component {
 
   // This links with our delete request on the server, so we can trigger that action from the client
   delete = (id) => {
-    if (confirm("Do you want to delete? ")) {
+    if (window.confirm("Do you want to delete? ")) {
       axios.delete(`/api/delete/${id}`)
       document.location.reload()
     }
