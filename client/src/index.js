@@ -1,15 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
-
+// Renders App.js 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById("root")
+  <App />,
+  document.getElementById('root')
 );
-
-serviceWorker.unregister();

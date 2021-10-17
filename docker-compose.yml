@@ -1,54 +1,63 @@
 version: '3.8'
 
+#Variables used for our database
+x-common-variables: &common-variables
+  MYSQL_DATABASE: books
+  MYSQL_USER: MYSQL_USER
+  MYSQL_PASSWORD: MYSQL_PASSWORD
+
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - MYSQL_DATABASE=$MYSQLDB_DATABASE
-    ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+
+  #Starts our mysql database using above variables and a pre-built image
+  mysql_db:
+    image: mysql
+    restart: always
+    cap_add:
+      - SYS_NICE
     volumes:
-      - db:/var/lib/mysql
-    networks:
-      - backend
-  
-  server:
-    depends_on:
-      - mysqldb
-    build: ./server
-    restart: unless-stopped
-    env_file: ./.env
+      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
     ports:
-      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+      - "9906:3306"
     environment:
-      - DB_HOST=mysqldb
-      - DB_USER=$MYSQLDB_USER
-      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
-      - DB_NAME=$MYSQLDB_DATABASE
-      - DB_PORT=$MYSQLDB_DOCKER_PORT
-      - CLIENT_ORIGIN=$CLIENT_ORIGIN
-    networks:
-      - backend
-      - frontend
+      <<: *common-variables
+      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+      MYSQL_HOST: localhost
 
-  client:
+  #Starts Nginx in reverse proxy mode, so we can hot edit, Nginx also handles communication between our containers
+  nginx:
     depends_on:
-      - server
+      - api
+      - client
+    restart: always
     build:
-      context: ./client
-      args:
-        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+      dockerfile: Dockerfile
+      context: ./nginx
     ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    networks:
-      - frontend  
+      - "3050:80"
 
-volumes: 
-  db:
+  #Our server, handles the processing of our requests (Node.js with Express)
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: "./server"
+    depends_on:
+      - mysql_db
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      <<: *common-variables
+      MYSQL_HOST_IP: mysql_db
 
-networks:
-  backend:
-  frontend:
+  #Our client, runs react, setup to reload each time we ctrl+s (hot reloading!)
+  client:
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+      

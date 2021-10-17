@@ -1,15 +1,13 @@
-.list {
-  text-align: left;
-  max-width: 750px;
-  margin: auto;
+.App {
+  text-align: center; 
 }
 
-.submit-form {
-  max-width: 300px;
-  margin: auto;
+.form{
+  display: inline-block;
+  justify-content: center;
 }
 
-.edit-form {
-  max-width: 300px;
-  margin: auto;
+.form input{
+  width: 250px;
+  margin: 10px;
 }
