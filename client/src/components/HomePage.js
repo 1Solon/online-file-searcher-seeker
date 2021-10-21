@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/HomePage.css';
 import axios from 'axios';
 import { Button, Container, Card, Row } from 'react-bootstrap'
 
-class App extends Component {
+class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
   constructor(props) {
     super(props)
@@ -61,7 +61,7 @@ class App extends Component {
   edit = (id) => {
     axios.put(`/api/update/${id}`, this.state)
     document.location.reload();
-  }
+  } 
 
   // This actually renders the App.js, I just copied a React template here
   // The part immediatly below this handles the list in our app, I think we can reuse this for our documents later
@@ -70,14 +70,12 @@ class App extends Component {
     let card = this.state.fetchData.map((val, key) => {
       return (
         <React.Fragment>
-          <Card style={{ width: '18rem' }} className='m-2'>
-            <Card.Body>
-              <Card.Title>{val.book_name}</Card.Title>
-              <Card.Text>
-                {val.book_review}
-              </Card.Text>
-              <input name='reviewUpdate' onChange={this.handleChange2} placeholder='Update Review' ></input>
-              <Button className='m-2' onClick={() => { this.edit(val.id) }}>Update</Button>
+          <Card className='border-dark mb-2'>
+              <Card.Header as="h6">{val.book_name}</Card.Header>
+              <Card.Body>
+                  <Card.Text>
+                      {val.book_review}
+                  </Card.Text>
               <Button onClick={() => { this.delete(val.id) }}>Delete</Button>
             </Card.Body>
           </Card>
@@ -85,24 +83,22 @@ class App extends Component {
       )
     })
 
-    //Handles the static part of the page, I.E the stuff we don't get from our DB
     return (
-      <div className='App'>
-        <h1>Dockerized Fullstack React Application</h1>
-        <div className='form'>
-          <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
-          <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
+      <div className='HomePage'>
+          <h1>Seeker</h1>
+          <div className='form'>
+            <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
+            <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
+          </div>
+
+          <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button> <br /><br/>
+
+          <Container className='file' style={{marginLeft: 'auto', marginRight: 'auto'}}>
+            <Row>{card}</Row>
+          </Container>
+        
         </div>
-
-        <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button> <br /><br/>
-
-        <Container>
-          <Row>
-            {card}
-          </Row>
-        </Container>
-      </div>
     );
-  }
+  } 
 }
-export default App;
+export default HomePage;

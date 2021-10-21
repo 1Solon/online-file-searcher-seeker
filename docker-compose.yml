@@ -15,7 +15,7 @@ services:
     cap_add:
       - SYS_NICE
     volumes:
-      - "./setup.sql:/docker-entrypoint-initdb.d/setup.sql"
+      - "./database/initDB.sql:/docker-entrypoint-initdb.d/1.sql"
     ports:
       - "9906:3306"
     environment:
