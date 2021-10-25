@@ -19,8 +19,9 @@ services:
     ports:
       - "9906:3306"
     environment:
-      <<: *common-variables
-      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'seeker-user'
+      MYSQL_ROOT_PASSWORD: 'seeker-root'
       MYSQL_HOST: localhost
 
   #Starts Nginx in reverse proxy mode, so we can hot edit, Nginx also handles communication between our containers
