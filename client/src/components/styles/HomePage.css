@@ -1,19 +1,52 @@
-.HomePage {
+@import "SideBar.css";
+
+.HomePage{
   text-align: center; 
   background-color: #001e3c;
   height: 100px;
+  width: 100%;
+}
 
+h6{
+  text-align: center;
+}
+
+#deleteBtn{
+  position: relative;
+  left: 47%;
+}
+
+.border-dark.mb-2{
+  text-align: start;
+  width: 98%;
 }
 
 .file{
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  top:140px;
+  width: 99%;
+  height: 100%;
+  padding-left: 100px; 
+  position: absolute;
+  
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+
+.file:hover{
+  position: absolute;
+  width: 99%;
+  height: 100%;
+  padding-left: 100px; 
+  position: absolute;
+  
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 h1{
+  font-family: 'Roboto', sans-serif;
   color: white;
-  /* #10bc5e GREEN*/
-  /* dd522c orangy-red */
 }
 
 .form{
@@ -22,6 +55,22 @@ h1{
 }
 
 .form input{
+  text-align: center;
+  border-radius: 6px;
+  outline: none;
+  border:none;
   width: 250px;
   margin: 10px;
 }
+
+button.my-2{
+  position: relative;
+  top: -2px;
+  height: 30%;
+  text-align: center;
+  padding:2px;
+}
+
+/* .HomePage ~ #SidebarComponent.active{
+  background-color: green;
+} */

@@ -1,20 +1,29 @@
 <!-- I copied this, it's seemingly just the linkup for react I think  -->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link
-  rel="stylesheet"
-  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-  crossorigin="anonymous"
-/>
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- Icons LINK -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'/>
    
     <title>Seeker</title>
   </head>
+
   <body>
     <div id="root"></div>
   </body>
+
+  <!-- I TRIED CALLING HAVING THE SCRIPT INSIDE COMPONENTS FOLDER BUT SOURCE DIDN'T WORK
+  HAD TO PUT IT INSIDE PUBLIC FOLDER -->
+  
+  <!-- <script src="../src/components/SideBarScript.js"></script> -->
+  <script src="SideBarScript.js"></script>
 </html>

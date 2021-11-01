@@ -1,0 +1,156 @@
+#SidebarComponent{
+    position:absolute;
+    height:100%;
+    top:140px;
+    left:0;
+    background-color: #001e3c;
+    border-radius: 8px; 
+    width:80px;
+    transition: all 0.5s ease;
+}
+
+#SidebarComponent.active{
+    width: 240px;
+}
+
+#btn{
+    position: relative;
+    line-height: 50px;
+    font-size:40px;
+}
+
+#SidebarComponent.active #btn{
+    left: 38.5%;
+}
+
+.logo, .bxl-docker{
+    display:flex;
+    font-size:40px;
+    margin-top:10px;
+    padding-left: 5px;
+}
+
+.logoName, .logo{
+    position: relative;
+    margin-top:10px;
+    padding-left: 15px;
+    line-height: 50px;
+    opacity:0;
+    transition: all 0.5s ease;
+}
+
+#SidebarComponent.active .logoName, .logo{
+    opacity:1;
+}
+
+.navList{
+    position: relative;
+    top: 50px;
+}
+
+#SidebarComponent.active #search_li:hover{
+    /* background-color: pink; */
+    padding:0px;
+}
+
+.bx-search-alt{
+    position: absolute;
+    font-size: 22px;
+    color: white;
+}
+
+#SidebarComponent.active .bx-search-alt{
+    color: black;
+}
+
+#search{
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    outline: none;
+    border:none;
+    text-align: center;
+    opacity: 0;
+}
+
+#SidebarComponent.active #search{
+    opacity: 1;
+}
+
+::placeholder{
+    color:black;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+span{
+    position: relative;
+    bottom: 54px;
+    padding: 5px;
+    font-size:18px;
+    font-weight:bold;
+    color: white;
+    margin-left: 15px;
+    font-family: 'Roboto', sans-serif;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+#SidebarComponent.active span{
+    opacity: 1;
+    left: 20px;
+    bottom: 0px;
+    transition: all 0.5s ease;
+}
+
+i{
+    color:white;
+    padding:1px;
+    font-size: 20px;
+}   
+
+a:link {
+    text-decoration: none;
+}
+
+li{
+    position: relative;
+    height: 50px; 
+    margin:10px -40%;
+    padding: 14px;
+    width: 100%;
+    text-align: justify;
+    list-style: none;
+}
+
+#SidebarComponent.active li{
+    margin:20px -10%;
+}   
+
+li:hover {
+    background-color:rgb(64, 136, 165);
+    border-radius: 10px;
+    padding: 19px;
+}
+
+#tooltip{
+    position: absolute;
+    bottom: 5px;
+    width: 80px;
+    left: 40px;
+    border-radius: 14px;
+    background:white;
+    color: black;
+    box-shadow: 0 2px 4px;
+    text-align: center;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+li:hover #tooltip {
+    opacity: 1;
+}
+
+#SidebarComponent.active #tooltip{
+    display: none;
+}

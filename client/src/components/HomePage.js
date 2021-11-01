@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import './styles/HomePage.css';
 import axios from 'axios';
-import { Button, Container, Card, Row } from 'react-bootstrap'
+import { Button, Card, Row } from 'react-bootstrap'
+import {SideBar} from './SideBar';
 
 class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
   constructor(props) {
     super(props)
-      this.state = {
-        setBookName: '',
-        setReview: '',
-        fetchData: [],
-        reviewUpdate: ''
-      }
+    this.state = {
+      setBookName: '',
+      setReview: '',
+      fetchData: [],
+      reviewUpdate: ''
+    }
   }
 
   // Defines the update state, this is required for us to run sql update requests, but I don't really understand it
@@ -34,17 +35,17 @@ class HomePage extends Component {
   // This runs immediatly when App.js is added to Index.js, so it grabs all the data we need in the object we defined above
   componentDidMount() {
     axios.get("/api/get")
-      .then((response) => {
-        this.setState({
-          fetchData: response.data
-        })
+    .then((response) => {
+      this.setState({
+        fetchData: response.data
       })
+    })
   }
 
   // This links with our submit request on the server, so we can trigger that action from the client
   submit = () => {
     axios.post('/api/insert', this.state)
-      .then(() => { alert('success post') })
+    .then(() => { alert('success post') })
     console.log(this.state)
     document.location.reload();
   }
@@ -76,7 +77,7 @@ class HomePage extends Component {
                   <Card.Text>
                       {val.book_review}
                   </Card.Text>
-              <Button onClick={() => { this.delete(val.id) }}>Delete</Button>
+              <Button id='deleteBtn' onClick={() => { this.delete(val.id) }}>Delete</Button>
             </Card.Body>
           </Card>
         </React.Fragment>
@@ -85,20 +86,28 @@ class HomePage extends Component {
 
     return (
       <div className='HomePage'>
-          <h1>Seeker</h1>
-          <div className='form'>
-            <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
-            <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
-          </div>
-
-          <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button> <br /><br/>
-
-          <Container className='file' style={{marginLeft: 'auto', marginRight: 'auto'}}>
-            <Row>{card}</Row>
-          </Container>
-        
+        <h1>Seeker</h1>
+        <div className='form'>
+          <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
+          <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
+          <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
         </div>
+
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/* HAD TO CHANGE IT FROM CONTAINER BECAUSE IT DOES NOT ALLOW ME TO CHANGE SIZE OF IT */}
+        <div className='file'>
+          <Row>{card}</Row>
+        </div>
+
+        {/*Sidebar*/}
+        <div className='sidebarDiv'>
+          <SideBar/>
+        </div>
+      </div>
     );
-  } 
+  }
 }
 export default HomePage;
