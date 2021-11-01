@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/Login.css';
 
 class Login extends React.Component {
   constructor(props){
@@ -24,15 +25,15 @@ class Login extends React.Component {
               <legend>Create Account</legend>
               <ul>
                 <li>
-                  <label for="username">Username:</label>
+                  <label htmlFor="username">Username:</label>
                   <input type="text" id="username" required/>
                 </li>
                 <li>
-                  <label for="email">Email:</label>
+                  <label htmlFor="email">Email:</label>
                   <input type="email" id="email" required/>
                 </li>
                 <li>
-                  <label for="password">Password:</label>
+                  <label htmlFor="password">Password:</label>
                   <input type="password" id="password" required/>
                 </li>
               </ul>
@@ -41,7 +42,6 @@ class Login extends React.Component {
             <button type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
           </form>
         )
-        break
       case "logIn":
         return (
           <form>
@@ -50,11 +50,11 @@ class Login extends React.Component {
               <legend>Log In</legend>
               <ul>
                 <li>
-                  <label for="username">Username:</label>
+                  <label htmlFor="username">Username:</label>
                   <input type="text" id="username" required/>
                 </li>
                 <li>
-                  <label for="password">Password:</label>
+                  <label htmlFor="password">Password:</label>
                   <input type="password" id="password" required/>
                 </li>
                 <li>
