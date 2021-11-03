@@ -19,6 +19,7 @@ services:
     ports:
       - "9906:3306"
     environment:
+      MYSQL_DATABASE: 'seekerDB'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'seeker-user'
       MYSQL_ROOT_PASSWORD: 'seeker-root'
@@ -61,4 +62,3 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
-      

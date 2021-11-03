@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles/Login.css';
+import axios from 'axios';
 
-class Login extends React.Component {
+class Login extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentView: "signUp"
+      currentView: "signUp",
+      setEmail: '',
+      setUsername: '',
+      setPassword: '',
+      fetchData: [],
     }
   }
 
@@ -14,6 +19,39 @@ class Login extends React.Component {
       currentView: view
     })
   }
+
+  handleChange = (event) => {
+    console.log(this.state)
+    let nam = event.target.name;
+    let val = event.target.value
+    this.setState({
+      [nam]: val
+    })
+  }
+
+  // componentDidMount() {
+  //   axios.get("/api/get")
+  //   .then((response) => {
+  //     this.setState({
+  //       fetchData: response.data
+  //     })
+  //   })
+  // }
+
+  register = () => {
+    axios.post('/api/insert', this.state)
+    .then(() => { alert('success post') })
+    console.log(this.state)
+    // document.location.reload();
+  }
+
+  login = () => {
+    axios.post('/api/login', this.state)
+    .then(() => {alert('succesful post')})
+    console.log(this.state)
+    // document.location.reload()
+  }
+
 
   currentView = () => {
     switch(this.state.currentView) {
@@ -26,19 +64,19 @@ class Login extends React.Component {
               <ul>
                 <li>
                   <label htmlFor="username">Username:</label>
-                  <input type="text" id="username" required/>
+                  <input name="setUsername" type="text" id="username" onChange={this.handleChange} required/>
                 </li>
                 <li>
                   <label htmlFor="email">Email:</label>
-                  <input type="email" id="email" required/>
+                  <input name="setEmail" type="email" id="email" onChange={this.handleChange} required/>
                 </li>
                 <li>
                   <label htmlFor="password">Password:</label>
-                  <input type="password" id="password" required/>
+                  <input name="setPassword" type="password" id="password" onChange={this.handleChange} required/>
                 </li>
               </ul>
             </fieldset>
-            <button>Submit</button>
+            <button type="submit" onClick={this.register}>Submit</button>
             <button type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
           </form>
         )
@@ -51,11 +89,11 @@ class Login extends React.Component {
               <ul>
                 <li>
                   <label htmlFor="username">Username:</label>
-                  <input type="text" id="username" required/>
+                  <input name="setUsername" type="text" id="username" onChange={this.handleChange} required/>
                 </li>
                 <li>
                   <label htmlFor="password">Password:</label>
-                  <input type="password" id="password" required/>
+                  <input name="setPassword" type="password" id="password" onChange={this.handleChange} required/>
                 </li>
                 <li>
                   <i/>
@@ -63,7 +101,7 @@ class Login extends React.Component {
                 </li>
               </ul>
             </fieldset>
-            <button>Login</button>
+            <button type="submit" onClick={this.login} >Login</button>
             <button type="button" onClick={ () => this.changeView("signUp")}>Create an Account</button>
           </form>
         )
