@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
-app.post("/insert", (req, res) => {
+app.post("/register", (req, res) => {
   const setUserName = req.body.setUsername;
   const setEmail = req.body.setEmail;
   const setPassword = req.body.setPassword;

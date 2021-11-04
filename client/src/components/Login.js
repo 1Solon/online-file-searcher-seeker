@@ -39,7 +39,7 @@ class Login extends Component {
   // }
 
   register = () => {
-    axios.post('/api/insert', this.state)
+    axios.post('/api/register', this.state)
     .then(() => { alert('success post') })
     console.log(this.state)
     // document.location.reload();
