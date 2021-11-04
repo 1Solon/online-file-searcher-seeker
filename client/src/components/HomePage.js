@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './styles/HomePage.css';
+import './styles/HomePage.css';
 import axios from 'axios';
 import { Button, Card, Row } from 'react-bootstrap'
 import {SideBar} from './SideBar';
