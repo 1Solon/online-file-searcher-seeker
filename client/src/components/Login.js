@@ -57,7 +57,7 @@ class Login extends Component {
     switch(this.state.currentView) {
       case "signUp":
         return (
-          <form>
+          <form className="loginForm">
             <h2>Sign Up!</h2>
             <fieldset>
               <legend>Create Account</legend>
@@ -82,7 +82,7 @@ class Login extends Component {
         )
       case "logIn":
         return (
-          <form>
+          <form className="loginForm">
             <h2>Welcome Back!</h2>
             <fieldset>
               <legend>Log In</legend>
@@ -108,7 +108,7 @@ class Login extends Component {
         // break
       // case "PWReset":
       //   return (
-      //     <form>
+      //     <form className="loginForm">
       //     <h2>Reset Password</h2>
       //     <fieldset>
       //       <legend>Password Reset</legend>
