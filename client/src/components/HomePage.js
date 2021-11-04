@@ -92,7 +92,12 @@ class HomePage extends Component {
           <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
           <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
         </div>
-        
+
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/*  */}
+        {/* HAD TO CHANGE IT FROM CONTAINER BECAUSE IT DOES NOT ALLOW ME TO CHANGE SIZE OF IT */}
         <div className='file'>
           <Row>{card}</Row>
         </div>

@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-h1, h2, h3, h4, h5, h6, p{ 
-     font-family: 'Roboto', sans-serif; 
-     font-weight: bold; 
+* { 
+     font-family: 'Roboto', sans-serif; font-weight: 1000; 
+}
+body {
+     margin: 0; 
+     padding: 0; 
 }
 
-* {
-     margin: 0;
-     padding: 0;
+h1, h2, h3, h4, h5, h6, p {
+     margin: 0; 
 }
 
 section#entry-page {
@@ -22,7 +24,7 @@ section#entry-page {
      box-sizing: border-box;
 }
 
-.loginForm {
+form {
      grid-column: 2;
      grid-row: 2;
      display: grid;
@@ -34,7 +36,7 @@ section#entry-page {
      box-shadow: 0 32px 64px rgba(0,0,0,0.2);
 }
 
-.loginForm h2 {
+h2 {
      margin-bottom: 5px;
      text-align: center;
      text-shadow: 0 4px 16px #fff;
@@ -42,7 +44,7 @@ section#entry-page {
      font-weight: 100;
 }
 
-.loginForm fieldset {
+fieldset {
      margin: 0;
      background-color: #fff;
      border: none;
@@ -50,46 +52,47 @@ section#entry-page {
      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.loginForm legend {
+legend {
      padding: 5px;
      background-color: #fff;
      border-radius: 5px;
 }
 
-.loginForm ul {
+ul {
      margin: 0;
      padding: 0;
 }
 
-.loginForm li {
+li {
      display: grid;
      align-items: center;
      margin: 10px;
 }
 
-.loginForm a {
+a {
      color: #001e3c;
 }
 
-.loginForm em {
+em {
      grid-column: span 2;
      text-align: center;
      padding: 5px;
 }
 
-.loginForm label {
+label {
      text-align: left;
      padding-bottom: 2px;
 }
 
-.loginForm input {
+input {
      padding: 5px;
      border: 1px solid #ddd;
      border-radius: 5px;
+     /* width: 80%; */
      height: 95%;
 }
 
-.loginForm button {
+button{
      padding: 10px;
      border:1px solid rgba(0,0,0,0);
      border-radius: 5px;
@@ -97,11 +100,11 @@ section#entry-page {
      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.loginForm input:hover {
+input:hover {
      border: 1px solid #23a6d5
 }
 
-.loginForm button:hover {
+button:hover{
      color: white;
      background-color: #001e3c;
      border: 1px solid #23a6d5;
@@ -111,10 +114,10 @@ section#entry-page {
      h2 {
           font-size: 40px;
      }
-     li {
+     li{
           grid-template-columns: 100px 1fr;
      }
-     label {
+     label{
           padding-right: 10px;
           padding-bottom: 0;
           text-align: right !important;
