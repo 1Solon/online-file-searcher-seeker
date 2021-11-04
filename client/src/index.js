@@ -5,7 +5,7 @@ import Login from './components/Login';
 // import SideBar from './components/SideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-let isUserLoggedIn = false;
+let isUserLoggedIn = true;
 
 if (isUserLoggedIn == true) {
     ReactDOM.render(<HomePage />, document.getElementById('root'));

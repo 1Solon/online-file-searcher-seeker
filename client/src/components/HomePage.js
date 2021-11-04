@@ -86,14 +86,15 @@ class HomePage extends Component {
 
     return (
       <div className='HomePage'>
-        <h1>Seeker</h1>
-        <div className='form'>
+        
+        {/* <div className='form'>
           <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
           <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
           <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
-        </div>
+        </div> */}
 
         <div className='file'>
+          <h1>Seeker</h1>
           <Row>{card}</Row>
         </div>
 

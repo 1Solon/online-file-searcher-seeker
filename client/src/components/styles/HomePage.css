@@ -2,7 +2,7 @@
 
 .HomePage{
   text-align: center; 
-  background-color: #001e3c;
+  background-color: white;
   height: 100px;
   width: 100%;
 }
@@ -22,8 +22,9 @@ h6{
 }
 
 .file{
+  background-color:lightgray;
   position: absolute;
-  top:140px;
+  top:100px;
   width: 99%;
   height: 100%;
   padding-left: 100px; 
