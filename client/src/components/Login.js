@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import './styles/Login.css';
-import axios from 'axios';
+import React, { Component } from 'react'
+import './styles/Login.css'
+import axios from 'axios'
 
 class Login extends Component {
   constructor(props){
@@ -22,7 +22,7 @@ class Login extends Component {
 
   handleChange = (event) => {
     console.log(this.state)
-    let nam = event.target.name;
+    let nam = event.target.name
     let val = event.target.value
     this.setState({
       [nam]: val
@@ -42,7 +42,7 @@ class Login extends Component {
     axios.post('/api/register', this.state)
     .then(() => { alert('success post') })
     console.log(this.state)
-    // document.location.reload();
+    // document.location.reload()
   }
 
   login = () => {
@@ -140,4 +140,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Login
