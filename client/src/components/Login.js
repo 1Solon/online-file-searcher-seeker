@@ -99,7 +99,7 @@ class Login extends Component {
                 </li>
               </ul>
             </fieldset>
-            <button type="submit" onClick={this.login} >Login</button>
+            <button type="button" onClick={this.login} >Login</button>
             <button type="button" onClick={ () => this.changeView("signUp")}>Create an Account</button>
           </form>
         )

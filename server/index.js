@@ -5,6 +5,7 @@ const app = express()
 
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
+const parser = require('body-parser');
 
 
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
@@ -46,7 +47,11 @@ var session;
 
 // Sets a response on our server, so we can test if the server is alive or not
 app.get('/', (req, res) => {
-  res.send('I am alive!')
+  // session=req.session;
+  //   if(session.userid){
+  //       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+  //   }else
+  //   res.sendFile('views/index.html',{root:__dirname})
 })
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
@@ -74,7 +79,12 @@ app.post("/login", (req, res) => {
     if(result.length > 0) {
       bcrypt.compare(setPassword, result[0].password, (error, response) => {
         if(response){
-          res.send(result)
+            session = req.session;
+            session.userid = req.body.username;
+            console.log(req.session)
+            window.alert("Succesfully logged in!")
+            // res.send("<a href='./client/src/components/HomePage.js'></a>")
+            res.redirect('/HomePage')
         }
         else{
           res.send({message: "Wrong username or password combination!"})
