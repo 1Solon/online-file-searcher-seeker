@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './styles/HomePage.css';
-import axios from 'axios';
+import React, { Component } from 'react'
+import './styles/HomePage.css'
+import axios from 'axios'
 import { Button, Card, Row } from 'react-bootstrap'
-import {SideBar} from './SideBar';
+import {SideBar} from './SideBar'
 
 class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
@@ -18,7 +18,7 @@ class HomePage extends Component {
 
   // Defines the update state, this is required for us to run sql update requests, but I don't really understand it
   handleChange = (event) => {
-    let nam = event.target.name;
+    let nam = event.target.name
     let val = event.target.value
     this.setState({
       [nam]: val
@@ -47,7 +47,7 @@ class HomePage extends Component {
     axios.post('/api/insert', this.state)
     .then(() => { alert('success post') })
     console.log(this.state)
-    document.location.reload();
+    document.location.reload()
   }
 
   // This links with our delete request on the server, so we can trigger that action from the client
@@ -61,13 +61,13 @@ class HomePage extends Component {
   // This links with our edit request on the server, so we can trigger that action from the client
   edit = (id) => {
     axios.put(`/api/update/${id}`, this.state)
-    document.location.reload();
+    document.location.reload()
   } 
 
   // This actually renders the App.js, I just copied a React template here
   // The part immediatly below this handles the list in our app, I think we can reuse this for our documents later
   render() {
-    this.state.fetchData = Array.from(this.state.fetchData);
+    this.state.fetchData = Array.from(this.state.fetchData)
     let card = this.state.fetchData.map((val, key) => {
       return (
         <React.Fragment>
@@ -103,7 +103,7 @@ class HomePage extends Component {
           <SideBar/>
         </div>
       </div>
-    );
+    )
   }
 }
-export default HomePage;
+export default HomePage
