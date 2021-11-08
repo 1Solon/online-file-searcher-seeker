@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './styles/Login.css';
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 class Login extends Component {
   constructor(props){
     super(props)
@@ -29,15 +31,6 @@ class Login extends Component {
     })
   }
 
-  // componentDidMount() {
-  //   axios.get("/api/get")
-  //   .then((response) => {
-  //     this.setState({
-  //       fetchData: response.data
-  //     })
-  //   })
-  // }
-
   register = () => {
     axios.post('/api/register', this.state)
     .then(() => { alert('success post') })
@@ -52,6 +45,11 @@ class Login extends Component {
     // document.location.reload()
   }
 
+  useEffect = () => {
+    axios.get('/api/login').then((response) => {
+      console.log(response)
+    })
+  }
 
   currentView = () => {
     switch(this.state.currentView) {
