@@ -72,22 +72,25 @@ app.post("/register", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
-  const setUserName = req.query.setUserName
-  const setPassword = req.query.setPassword
+  const setUserName = 'Saul'
+  const setPassword = 'password'
 
-  db.query("SELECT * FROM USERS WHERE USER_NAME = ?", setUserName, (err, result) => {
+  console.log("I have gotten a login request")
+
+  db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', setUserName, (err, result) => {
+    console.log(result);
     if(result.length > 0) {
       bcrypt.compare(setPassword, result[0].password, (error, response) => {
         if(response){
             session = req.session;
             session.userid = req.body.username;
             console.log(req.session)
-            window.alert("Succesfully logged in!")
             // res.send("<a href='./client/src/components/HomePage.js'></a>")
             res.redirect('/HomePage')
         }
         else{
           res.send({message: "Wrong username or password combination!"})
+          console.log("Login Failed!")
         }
       })
     }
