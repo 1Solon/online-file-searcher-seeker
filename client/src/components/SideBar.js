@@ -23,7 +23,7 @@ export class SideBar extends Component {
           </li>
 
           <li>
-            <a href="#">
+            <a href="https://www.google.com/?client=safari">
             <i className='bx bx-home'></i>
             <span>Home</span>
             </a>

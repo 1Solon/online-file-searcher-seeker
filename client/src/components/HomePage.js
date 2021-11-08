@@ -93,11 +93,18 @@ class HomePage extends Component {
           <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
         </div> */}
 
-        <div className='file'>
-          <h1>Seeker</h1>
-          <Row>{card}</Row>
+        {/* Login Symbol */}
+        <div className='LoginLogo'>
+          <img src="./images/user1"></img>
+          <i className='bx bx-user'></i>
         </div>
-
+        
+        <div className='file'>
+          <input type="text" placeholder="Search"></input>
+          {/* <i className='bx bx-search'></i> */}
+          {/* <Row>{card}</Row> */}
+        </div>
+        
         {/*Sidebar*/}
         <div className='sidebarDiv'>
           <SideBar/>

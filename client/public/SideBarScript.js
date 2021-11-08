@@ -1,6 +1,6 @@
 let sidebar = document.querySelector("#SidebarComponent")
 let closeBtn = document.querySelector("#btn")
-let searchBtn = document.querySelector(".bx-search-alt")
+let searchBtn = document.querySelector(".bx-search-alt") //.bx-search-alt  / #search_li
 
 // function to check when user clicks on menu button, opens/closes sidebar
 btn.onclick = function(){
@@ -21,9 +21,12 @@ checker = function(toggle){
         var x = document.getElementsByClassName("file")
         x[0].style.paddingLeft = "260px"
         x[0].style.transition = "all 0.5s ease"
-
+        
         // icon change
         closeBtn.classList.replace("bx-menu", "bx-menu-alt-right")
+
+        searchBtn = document.querySelector(".bx-search-alt")
+        
     }
     else{
         var x = document.getElementsByClassName("file")
