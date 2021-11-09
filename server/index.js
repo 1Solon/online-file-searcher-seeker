@@ -73,17 +73,12 @@ app.post("/register", (req, res) => {
 
 app.post("/login", (req, res) => {
   const username = req.body.username
-  const password = req.body.username
-
-  console.log("This is my username: " + req.body.username)
- 
-  console.log("I have gotten a login request")
+  const password = req.body.password
 
   db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, result) => {
     console.log(result);
     if(result.length > 0) {
-      console.log("Hola: " + result[0].password)
-      bcrypt.compare(password, result[0].password, (error, response) => {
+      bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
         console.log(response)
         if(response){
             console.log('OK')
