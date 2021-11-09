@@ -39,16 +39,11 @@ class Login extends Component {
   }
 
   login = () => {
-    axios.post('/api/login', this.state)
-    .then(() => {alert('succesful post')})
-    console.log(this.state)
+    axios.post('/api/login',{
+      username: this.state.setUsername,
+      password: this.state.setPassword
+    }).then(() => {alert('Successful post')})
     // document.location.reload()
-  }
-
-  useEffect = () => {
-    axios.get('/api/login').then((response) => {
-      console.log(response)
-    })
   }
 
   currentView = () => {
