@@ -86,7 +86,7 @@ app.post("/login", (req, res) => {
             // session.userid = req.body.username
             // console.log(req.session)
             // res.send("<a href='./client/src/components/HomePage.js'></a>")
-            res.redirect('/HomePage')
+            // return res.redirect('/homePage')
         }
         else{
           res.send({message: "Wrong username or password combination!"})
