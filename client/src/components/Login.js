@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
 import axios from 'axios';
 
@@ -42,9 +43,17 @@ class Login extends Component {
     axios.post('/api/login',{
       username: this.state.setUsername,
       password: this.state.setPassword
-    }).then(() => {alert('Successful post')})
-    // document.location.reload()
-  }
+    }).then((response) => {
+      if (!response.data.message) {
+        // this.state.setLoginStatus(response.data.message);
+        let navigate = useNavigate()
+        navigate('/homepahge')
+      }  
+      else {
+        // this.state.setLoginStatus(response.data[0].username);
+      }
+    });
+  };
 
   currentView = () => {
     switch(this.state.currentView) {

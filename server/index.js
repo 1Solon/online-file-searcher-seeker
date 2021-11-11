@@ -1,16 +1,15 @@
 const express = require('express')
 const mysql = require('mysql2')
 const cors = require('cors')
-const app = express()
 
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const sessions = require('express-session');
-const parser = require('body-parser');
-
+const session = require("express-session");
 
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
 const saltRounds = 10
 
+const app = express()
 
 // Handles our mySQL server connection
 const db = mysql.createPool({
@@ -21,13 +20,26 @@ const db = mysql.createPool({
 })
 
 // Enable cors, so we can serve the client with our SQL and our Server
-app.use(cors())
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parsing the incoming data
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // Session express middleware
 app.use(
-  sessions({
+  session({
     key: "userId",
-    secret: "subscribe",
+    secret: "seeker",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -35,15 +47,6 @@ app.use(
     },
   })
 );
-
-// Parsing the incoming data
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-// cookie parser middleware
-app.use(cookieParser());
-
-var session;
 
 // Sets a response on our server, so we can test if the server is alive or not
 app.get('/', (req, res) => {
@@ -71,22 +74,31 @@ app.post("/register", (req, res) => {
   })
 })
 
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
 app.post("/login", (req, res) => {
   const username = req.body.username
   const password = req.body.password
 
   db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, result) => {
     console.log(result);
+    if (err) {
+      res.send({ err: err });
+    }
     if(result.length > 0) {
       bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
         console.log(response)
         if(response){
             console.log('OK')
-            // session = req.session
-            // session.userid = req.body.username
-            // console.log(req.session)
-            // res.send("<a href='./client/src/components/HomePage.js'></a>")
-            // return res.redirect('/homePage')
+            req.session.user = result
+            console.log(req.session.user);
+            res.send(result);
         }
         else{
           res.send({message: "Wrong username or password combination!"})

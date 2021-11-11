@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Button, Card, Row } from 'react-bootstrap'
 import {SideBar} from './SideBar';
 
+axios.defaults.withCredentials = true;
+
 class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
   constructor(props) {
