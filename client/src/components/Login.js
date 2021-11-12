@@ -1,145 +1,138 @@
-import React, { Component, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
-axios.defaults.withCredentials = true;
+export default function Login() {
+    const [usernameReg, setUsernameReg] = useState("");
+    const [passwordReg, setPasswordReg] = useState("");
+    const [emailReg, setEmailReg] = useState("");
 
-class Login extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      currentView: "signUp",
-      setEmail: '',
-      setUsername: '',
-      setPassword: '',
-      fetchData: [],
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [loginStatus, setLoginStatus] = useState("");
+
+    const nav = useNavigate()
+
+    var currentView = 'LogIn'
+
+    axios.defaults.withCredentials = true;
+
+    const changeView = (view) => {
+        currentView = view
     }
-  }
 
-  changeView = (view) => {
-    this.setState({
-      currentView: view
-    })
-  }
-
-  handleChange = (event) => {
-    console.log(this.state)
-    let nam = event.target.name;
-    let val = event.target.value
-    this.setState({
-      [nam]: val
-    })
-  }
-
-  register = () => {
-    axios.post('/api/register', this.state)
-    .then(() => { alert('success post') })
-    console.log(this.state)
-    // document.location.reload();
-  }
-
-  login = () => {
-    axios.post('/api/login',{
-      username: this.state.setUsername,
-      password: this.state.setPassword
-    }).then((response) => {
-      if (!response.data.message) {
-        // this.state.setLoginStatus(response.data.message);
-        let navigate = useNavigate()
-        navigate('/homepahge')
-      }  
-      else {
-        // this.state.setLoginStatus(response.data[0].username);
-      }
-    });
-  };
-
-  currentView = () => {
-    switch(this.state.currentView) {
-      case "signUp":
-        return (
-          <form className="loginForm">
-            <h2>Sign Up!</h2>
-            <fieldset>
-              <legend>Create Account</legend>
-              <ul>
-                <li>
-                  <label htmlFor="username">Username:</label>
-                  <input name="setUsername" type="text" id="username" onChange={this.handleChange} required/>
-                </li>
-                <li>
-                  <label htmlFor="email">Email:</label>
-                  <input name="setEmail" type="email" id="email" onChange={this.handleChange} required/>
-                </li>
-                <li>
-                  <label htmlFor="password">Password:</label>
-                  <input name="setPassword" type="password" id="password" onChange={this.handleChange} required/>
-                </li>
-              </ul>
-            </fieldset>
-            <button type="submit" onClick={this.register}>Submit</button>
-            <button type="button" onClick={ () => this.changeView("logIn")}>Have an Account?</button>
-          </form>
-        )
-      case "logIn":
-        return (
-          <form className="loginForm">
-            <h2>Welcome Back!</h2>
-            <fieldset>
-              <legend>Log In</legend>
-              <ul>
-                <li>
-                  <label htmlFor="username">Username:</label>
-                  <input name="setUsername" type="text" id="username" onChange={this.handleChange} required/>
-                </li>
-                <li>
-                  <label htmlFor="password">Password:</label>
-                  <input name="setPassword" type="password" id="password" onChange={this.handleChange} required/>
-                </li>
-                <li>
-                  <i/>
-                  <a onClick={ () => this.changeView("PWReset")} href="#">Forgot Password?</a>
-                </li>
-              </ul>
-            </fieldset>
-            <button type="button" onClick={this.login} >Login</button>
-            <button type="button" onClick={ () => this.changeView("signUp")}>Create an Account</button>
-          </form>
-        )
-        // break
-      // case "PWReset":
-      //   return (
-      //     <form className="loginForm">
-      //     <h2>Reset Password</h2>
-      //     <fieldset>
-      //       <legend>Password Reset</legend>
-      //       <ul>
-      //         <li>
-      //           <em>A reset link will be sent to your inbox!</em>
-      //         </li>
-      //         <li>
-      //           <label for="email">Email:</label>
-      //           <input type="email" id="email" required/>
-      //         </li>
-      //       </ul>
-      //     </fieldset>
-      //     <button>Send Reset Link</button>
-      //     <button type="button" onClick={ () => this.changeView("logIn")}>Go Back</button>
-      //   </form>
-      //   )
-      default:
-        break
+    const register = () => {
+        axios.post('/api/register', {
+            username: usernameReg,
+            email: emailReg,
+            password: passwordReg,
+        }).then(() => { alert('success post') })
+        // console.log(this.state)
+        // document.location.reload();
     }
-  }
+    
+    const login = () => {
+        axios.post('/api/login',{
+            username: username,
+            password: password,
+        }).then((response) => {
+            if(!response.data.message) {
+              setLoginStatus(response.data.message);
+              nav('/homepage')
+            } else {
+              setLoginStatus(response.data[0].username);
+            }
+          });
+      };
 
-  render() {
+    useEffect(() => {
+        axios.get('api/login').then((response) => {
+          if (response.data.loggedIn == true) {
+            setLoginStatus(response.data.user[0].username);
+            nav('/homepage')
+          }
+        });
+    }, []);
+
     return (
-      <section id="entry-page">
-        {this.currentView()}
-      </section>
+        <section id="entry-page">
+            <form className="loginForm">
+                <h2>Welcome Back!</h2>
+                <fieldset>
+                <legend>Log In</legend>
+                <ul>
+                    <li>
+                    <label htmlFor="username">Username:</label>
+                    <input name="setUsername" type="text" id="username" onChange={(e) => {setUsername(e.target.value);}} required/>
+                    </li>
+                    <li>
+                    <label htmlFor="password">Password:</label>
+                    <input name="setPassword" type="password" id="password" onChange={(e) => {setPassword(e.target.value);}} required/>
+                    </li>
+                    <li>
+                    <i/>
+                    <a onClick={ () => changeView("PWReset")} href="#">Forgot Password?</a>
+                    </li>
+                </ul>
+                </fieldset>
+                <button type="button" onClick={login} >Login</button>
+                <button type="button" onClick={() => changeView("SignUp")}>Create an Account</button>
+            </form>
+        </section>
     )
-  }
-}
 
-export default Login;
+    // switch(currentView){
+    //     case 'SignUp':
+    //         return (
+    //             <form className="loginForm">
+    //                 <h2>Sign Up!</h2>
+    //                 <fieldset>
+    //                 <legend>Create Account</legend>
+    //                 <ul>
+    //                     <li>
+    //                     <label htmlFor="username">Username:</label>
+    //                     <input name="setUsername" type="text" id="username" onChange={(e) => {setUsernameReg(e.target.value);}}required/>
+    //                     </li>
+    //                     <li>
+    //                     <label htmlFor="email">Email:</label>
+    //                     <input name="setEmail" type="email" id="email"  onChange={(e) => {setEmailReg(e.target.value);}}required/>
+    //                     </li>
+    //                     <li>
+    //                     <label htmlFor="password">Password:</label>
+    //                     <input name="setPassword" type="password" id="password" onChange={(e) => {setPasswordReg(e.target.value);}}required/>
+    //                     </li>
+    //                 </ul>
+    //                 </fieldset>
+    //                 <button type="submit" onClick={register}>Submit</button>
+    //                 <button type="button" onClick={() => changeView("LogIn")}>Have an Account?</button>
+    //             </form>
+    //         );
+    //     case 'LogIn':
+    //         return (
+    //             <form className="loginForm">
+    //               <h2>Welcome Back!</h2>
+    //               <fieldset>
+    //                 <legend>Log In</legend>
+    //                 <ul>
+    //                   <li>
+    //                     <label htmlFor="username">Username:</label>
+    //                     <input name="setUsername" type="text" id="username" onChange={(e) => {setUsername(e.target.value);}} required/>
+    //                   </li>
+    //                   <li>
+    //                     <label htmlFor="password">Password:</label>
+    //                     <input name="setPassword" type="password" id="password" onChange={(e) => {setPassword(e.target.value);}} required/>
+    //                   </li>
+    //                   <li>
+    //                     <i/>
+    //                     <a onClick={ () => changeView("PWReset")} href="#">Forgot Password?</a>
+    //                   </li>
+    //                 </ul>
+    //               </fieldset>
+    //               <button type="button" onClick={login} >Login</button>
+    //               <button type="button" onClick={() => changeView("SignUp")}>Create an Account</button>
+    //             </form>
+    //         )
+    // }
+}

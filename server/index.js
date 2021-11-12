@@ -59,9 +59,9 @@ app.get('/', (req, res) => {
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
-  const setUserName = req.body.setUsername
-  const setEmail = req.body.setEmail
-  const setPassword = req.body.setPassword
+  const setUserName = req.body.username
+  const setEmail = req.body.email
+  const setPassword = req.body.password
 
   // Password encryption
   bcrypt.hash(setPassword, saltRounds, (err, hash) => {
