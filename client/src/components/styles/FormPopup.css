@@ -1,0 +1,55 @@
+.form .Btn2{
+    position: relative;
+    top: 40%;
+}
+
+#popup {
+    position:fixed;
+    bottom: 200px;
+    left: 35%;
+    right: 35%;
+    min-width: 300px;
+    max-width: 500px;
+    display: none;
+    border: 3px solid lightgrey;
+    background-color:white;
+    /* background-color:rgba(38, 21, 116,); */
+}
+
+#popup .row1 h1{
+    position: relative;
+    left: 0;
+}
+
+#popup .row1 input{
+    border: 2px solid lightgrey;
+    position: relative;
+    right: 10px;
+    width: 100%;
+}
+
+#popup .row1 input:focus {
+    border: 2px solid darkblue;
+  }
+
+#popup .row2 {
+    height: 130px;
+}
+  
+ #popup .row2 .btn, .closeBtn {
+    color: white;
+    padding: 16px;
+    border: none;
+    width: 100%;
+    margin-bottom:5px;
+    border-radius:10px;
+}
+  
+#popup .row2 .closeBtn {
+    background-color:rgb(192, 46, 46);
+} 
+  
+#popup .row2 .btn:hover, .Btn2:hover, .closeBtn:hover {
+    background-color: #001e3c;
+    border: 1px solid #23a6d5;
+}

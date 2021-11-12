@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import './styles/HomePage.css'
 import axios from 'axios'
-import { Button, Card, Row } from 'react-bootstrap'
+import { Button, Card, Row} from 'react-bootstrap'
+import {TopBar} from './TopBar'
 import {SideBar} from './SideBar'
+import {Footer} from './Footer'
+
+// import image from './images/user1.jpeg'
 
 class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
@@ -85,24 +89,24 @@ class HomePage extends Component {
     })
 
     return (
-      <div className='HomePage'>
-        
-        {/* <div className='form'>
-          <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
-          <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
-          <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
-        </div> */}
-
-        {/* Login Symbol */}
-        <div className='LoginLogo'>
-          <img src="./images/user1"></img>
-          <i className='bx bx-user'></i>
+      <div className='HomePageDiv'>
+        {/* TopBar */}
+        <div className='topBar'>
+          <TopBar/>
         </div>
         
-        <div className='file'>
+        <Row className='file bn-green'>
           <input type="text" placeholder="Search"></input>
-          {/* <i className='bx bx-search'></i> */}
-          {/* <Row>{card}</Row> */}
+          <i className='bx bx-search'></i>
+        </Row>
+
+        {/* <div className='file'>
+          <Row>{card}</Row>
+        </div> */}
+
+        {/* Footer */}
+        <div className='FooterDiv'>
+          <Footer/>
         </div>
         
         {/*Sidebar*/}

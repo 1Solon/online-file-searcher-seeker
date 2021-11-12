@@ -1,15 +1,7 @@
 @import "SideBar.css";
-
-.HomePage{
-  text-align: center; 
-  background-color: white;
-  height: 100px;
-  width: 100%;
-  color: black;
-}
-
-h6{
-  text-align: center;
+html,body{
+  overflow-x: hidden; 
+  background-color: rgb(247, 248, 251);
 }
 
 #deleteBtn{
@@ -24,12 +16,13 @@ h6{
 
 .file{
   background-color: rgb(247, 248, 251);
+  /* background-color: pink; */
   position: absolute;
-  top:100px;
-  width: 100%;
-  height: 100%;
-  padding-top: 20px;
+  padding-top: 10px;
+  justify-content: center;
   padding-left: 100px; 
+  height: 100px;
+  width: 100%;
 }
 
 .file input{
@@ -38,23 +31,15 @@ h6{
   border-style:solid;
   width: 500px;
   text-align: center;
+  background-color:white;
 }
 
-.file input:hover{
+.file .bx-search{
+  color:black;
   padding:10px;
-}
-
-/*.file .bx-search{
+  width: 30px;
   position: relative;
-  top:0.5%;
-  right:58%; 
-  padding:15px;
-  font-size: 22px;
-  color: black;
-}*/
-
-h1{
-  color: white;
+  right: 500px;
 }
 
 .form{
@@ -78,17 +63,3 @@ button.my-2{
   text-align: center;
   padding:2px;
 }
-
-.LoginLogo{
-  position: absolute;
-  right: 0%;
-  top:35px;
-  padding-left:50px;
-  padding-right:50px;
-} 
-
-.LoginLogo i{
-  display: inline;
-  color:black;
-}
-

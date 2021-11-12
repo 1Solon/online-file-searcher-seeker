@@ -5,10 +5,14 @@
     top:0px;
     left:0;
     background-color: #001e3c;
-    border-radius: 8px; 
     width:80px;
     transition: all 0.5s ease;
 }
+
+#SidebarComponent h1{
+    color:white;
+}
+    
 
 #SidebarComponent.active{
     width: 240px;
@@ -51,9 +55,6 @@
 
 #SidebarComponent.active #search_li:hover{
     background-color: #001e3c;
-    padding-left:0px;
-    padding-right:0px;
-    /*On click expand left and right*/
 }
 
 .bx-search-alt{
@@ -77,6 +78,15 @@
     border:none;
     text-align: center;
     opacity: 0;
+    
+}
+
+#search:focus{
+    position: relative;
+    margin-left: -15px;
+    width: 220px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #SidebarComponent.active #search{
