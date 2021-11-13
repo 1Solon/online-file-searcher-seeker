@@ -25,7 +25,6 @@ render(){
             <ul className="leftUL">
               <li>Front-end</li>
               <li>Back-end</li>
-              <li>Many Others ;)</li>
             </ul>
           </Col>
 
@@ -33,26 +32,25 @@ render(){
             <ul className="rightUL">
               <li>Seeker</li>
               <li>Team</li>
-              <li>Work</li>
             </ul>
           </Col>
         </Row>
           
         <Row>
           <Col id="col3" className="col-md-3 no-gutters d-flex justify-content-center align-items-center">
-            <i class='bx bxl-facebook'></i>
+            <i className='bx bxl-facebook'></i>
           </Col>
 
           <Col id="col3" className="col-md-3 no-gutters d-flex justify-content-center align-items-center">
-            <i class='bx bxl-twitter' ></i>
+            <i className='bx bxl-twitter' ></i>
           </Col>
 
           <Col id="col3" className="col-md-3 no-gutters d-flex justify-content-center align-items-center">
-            <i class='bx bxl-snapchat' ></i>
+            <i className='bx bxl-snapchat' ></i>
           </Col>
 
           <Col id="col3" className="col-md-3 no-gutters d-flex justify-content-center align-items-center">
-            <i class='bx bxl-instagram' ></i>
+            <i className='bx bxl-instagram' ></i>
           </Col>
         </Row>  
         

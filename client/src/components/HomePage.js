@@ -95,9 +95,38 @@ class HomePage extends Component {
           <TopBar/>
         </div>
         
-        <Row className='file bn-green'>
+        <Row className='file'>
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+
         </Row>
 
         {/* <div className='file'>

@@ -5,7 +5,7 @@ import Login from './components/Login'
 import UserPage from './components/UserPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-let isUserLoggedIn = 3;
+let isUserLoggedIn = 1;
 sessionStorage.setItem("logged-in", isUserLoggedIn);
 
 if (isUserLoggedIn === 1) {

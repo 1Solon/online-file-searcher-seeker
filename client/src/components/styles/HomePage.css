@@ -2,6 +2,7 @@
 html,body{
   overflow-x: hidden; 
   background-color: rgb(247, 248, 251);
+  /* background-color: red; */
 }
 
 #deleteBtn{
@@ -21,7 +22,7 @@ html,body{
   padding-top: 10px;
   justify-content: center;
   padding-left: 100px; 
-  height: 100px;
+  height: 100%;
   width: 100%;
 }
 
@@ -62,4 +63,9 @@ button.my-2{
   height: 30%;
   text-align: center;
   padding:2px;
+}
+
+.FooterDiv{
+  position: fixed;
+  bottom: 100px;
 }

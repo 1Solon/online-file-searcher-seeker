@@ -30,7 +30,7 @@ export class UserPage extends Component {
                     <div className="UserDetailsDiv">
                         <div className="Titles">
                             <h3>UserDetails</h3>
-                        </div>
+                        </div>         
                         
                         <div className="leftDetails">
                             <div id="top">
@@ -56,11 +56,11 @@ export class UserPage extends Component {
                             </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
              
             <div  className="row no-gutters">
-                <div className="col-md-6 no-gutters d-flex justify-content-center align-items-center">
+                <div className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
                     <div className="FilesDiv">
                         <div className="Titles">
                             <h3>Files</h3>
@@ -69,18 +69,22 @@ export class UserPage extends Component {
                         <p>file2</p>
                     </div>
                 </div>
-                <div className="col-md-6 no-gutters d-flex justify-content-center align-items-center">
+                {/* <div className="col-md-6 no-gutters d-flex justify-content-center align-items-center">
                     <div className="changeDetailsDiv">
                         <div className="Titles">
                             <h3>Change Details</h3>
                         </div>
                         <div id="backgroundPopup"></div>
-                        <Row>
+                        <Row >
                             <FormPopup/>
                         </Row>
                     </div>
-                </div>
+                </div> */}
             </div>
+            <div id="backgroundPopup"></div>
+                <Row className="FormBtn">
+                    <FormPopup/>
+                </Row>
 
             {/* Sidebar */}
             <div className='sidebarDiv'>

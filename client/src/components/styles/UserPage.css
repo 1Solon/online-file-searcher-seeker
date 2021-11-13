@@ -117,10 +117,22 @@
     height: 50%;
 }
 
-.changeDetailsDiv{
-    height: 300px;
-    width: 60%;
-    background-color:white;
-    text-align: center; 
-    border-radius: 5%;
+
+.FormBtn{
+    position:relative;
+    bottom: 460px;
+    left: 70%;
 }
+
+@media only screen and (max-width: 970px){
+    .FormBtn{
+        left: 67%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .FormBtn{
+        left: 38%;
+    }
+}
+

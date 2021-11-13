@@ -30,3 +30,16 @@
     border-left: 1px solid #001e3c;
     height: 50px;
 }
+
+@media only screen and (max-width: 768px){
+    #circularUser{
+        left: 85%;
+    }
+    .TopBar p{
+        left: 70%;
+    }
+
+    .vl{
+        left: 65%;
+    }
+}
