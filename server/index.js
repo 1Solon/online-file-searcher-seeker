@@ -1,12 +1,16 @@
-
 const express = require('express')
 const mysql = require('mysql2')
 const cors = require('cors')
-const app = express()
+
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
 const saltRounds = 10
 
+const app = express()
 
 // Handles our mySQL server connection
 const db = mysql.createPool({
@@ -17,22 +21,48 @@ const db = mysql.createPool({
 })
 
 // Enable cors, so we can serve the client with our SQL and our Server
-app.use(cors())
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
-// Starts our express server
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parsing the incoming data
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// Session express middleware
+app.use(
+  session({
+    key: "userId",
+    secret: "seeker",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 60 * 60 * 24,
+    },
+  })
+);
+
 // Sets a response on our server, so we can test if the server is alive or not
 app.get('/', (req, res) => {
-  res.send('I am alive!')
+  // session=req.session;
+  //   if(session.userid){
+  //       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+  //   }else
+  //   res.sendFile('views/index.html',{root:__dirname})
 })
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
-  const setUserName = req.body.setUsername
-  const setEmail = req.body.setEmail
-  const setPassword = req.body.setPassword
+  const setUserName = req.body.username
+  const setEmail = req.body.email
+  const setPassword = req.body.password
 
   // Password encryption
   bcrypt.hash(setPassword, saltRounds, (err, hash) => {
@@ -45,18 +75,35 @@ app.post("/register", (req, res) => {
   })
 })
 
-app.post("/login", (req, res) => {
-  const setUserName = req.query.setUserName
-  const setPassword = req.query.setPassword
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
 
-  db.query("SELECT * FROM USERS WHERE USER_NAME = ?", setUserName, (err, result) => {
+app.post("/login", (req, res) => {
+  const username = req.body.username
+  const password = req.body.password
+
+  db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, result) => {
+    console.log(result);
+    if (err) {
+      res.send({ err: err });
+    }
     if(result.length > 0) {
-      bcrypt.compare(setPassword, result[0].password, (error, response) => {
+      bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
+        console.log(response)
         if(response){
-          res.send(result)
+            console.log('OK')
+            req.session.user = result
+            console.log(req.session.user);
+            res.send(result);
         }
         else{
           res.send({message: "Wrong username or password combination!"})
+          console.log("Login Failed!")
         }
       })
     }
@@ -65,25 +112,6 @@ app.post("/login", (req, res) => {
     }
   })
 })
-
-// Handles deleting an element from the DB
-// app.delete("/delete/:bookId", (req, res) => {
-//   const bookId = req.params.bookId
-//   const DeleteQuery = "DELETE FROM books_reviews WHERE id = ?"
-//   db.query(DeleteQuery, bookId, (err, result) => {
-//     if (err) console.log(err)
-//   })
-// })
-
-// Handles updating an element from the DB
-// app.put("/update/:bookId", (req, res) => {
-//   const bookReview = req.body.reviewUpdate
-//   const bookId = req.params.bookId
-//   const UpdateQuery = "UPDATE books_reviews SET book_review = ? WHERE id = ?"
-//   db.query(UpdateQuery, [bookReview, bookId], (err, result) => {
-//     if (err) console.log(err)
-//   })
-// })
 
 // Starts the listener so we can communicate with the other services
 app.listen('3001', () => { })

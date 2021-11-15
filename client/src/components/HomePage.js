@@ -8,6 +8,8 @@ import {Footer} from './Footer'
 
 // import image from './images/user1.jpeg'
 
+axios.defaults.withCredentials = true;
+
 class HomePage extends Component {
   // Creates an object that our DB returns, so we can access our DB table like a normal JS object
   constructor(props) {
