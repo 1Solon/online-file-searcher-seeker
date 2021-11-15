@@ -1,0 +1,45 @@
+.rightTopbar, .leftTopbar{
+    background-color:white;
+    height: 100%;
+}
+
+.rightTopbar{
+    position: relative;
+    left: 0%;
+}
+
+.TopBar p{
+    color: black;
+    position: relative;
+    bottom: 15px;
+    left: 75%;
+}
+
+#circularUser{
+    position: absolute;
+    top: 5px;
+    left: 85%;
+    height: 90%;
+    border-radius: 50%;
+}
+
+.vl{
+    position: relative;
+    top: 25px;
+    left: 70%;
+    border-left: 1px solid #001e3c;
+    height: 50px;
+}
+
+@media only screen and (max-width: 768px){
+    #circularUser{
+        left: 85%;
+    }
+    .TopBar p{
+        left: 70%;
+    }
+
+    .vl{
+        left: 65%;
+    }
+}

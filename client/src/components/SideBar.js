@@ -23,9 +23,9 @@ export class SideBar extends Component {
           </li>
 
           <li>
-            <a href="#">
-            <i className='bx bx-home'></i>
-            <span>Home</span>
+            <a href="https://www.google.com/?client=safari">
+              <i className='bx bx-home'></i>
+              <span>Home</span>
             </a>
             <span id="tooltip">Home</span>
           </li>
@@ -55,7 +55,6 @@ export class SideBar extends Component {
           
           <li>
             <a href="#">
-              {/* <i class='bx bx-log-in'></i> */}
               <i className='bx bx-log-out'></i>
               <span>Log out</span>
             </a>

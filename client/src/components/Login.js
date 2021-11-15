@@ -51,8 +51,7 @@ class Login extends Component {
     console.log(this.state)
     // document.location.reload()
   }
-
-
+  
   currentView = () => {
     switch(this.state.currentView) {
       case "signUp":
