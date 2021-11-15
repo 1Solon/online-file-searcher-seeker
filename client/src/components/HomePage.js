@@ -135,14 +135,14 @@ class HomePage extends Component {
           <Row>{card}</Row>
         </div> */}
 
+        {/* Sidebar */}
+        <div className='sidebarDiv'>
+          <SideBar/>
+        </div>
+
         {/* Footer */}
         <div className='FooterDiv'>
           <Footer/>
-        </div>
-        
-        {/*Sidebar*/}
-        <div className='sidebarDiv'>
-          <SideBar/>
         </div>
       </div>
     )

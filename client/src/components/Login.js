@@ -57,58 +57,81 @@ export default function Login() {
     }, []);
 
     return (
-        <section id="entry-page">
-            <form className="loginForm">
-                <h2>Welcome Back!</h2>
+      <section id="entry-page">
+        <form className="loginForm">
+            <h2>Welcome Back!</h2>
+            <fieldset>
+            <legend>Log In</legend>
+            <ul>
+                <li>
+                <label htmlFor="username">Username:</label>
+                <input name="setUsername" type="text" id="username" onChange={(e) => {setUsername(e.target.value);}} required/>
+                </li>
+                <li>
+                <label htmlFor="password">Password:</label>
+                <input name="setPassword" type="password" id="password" onChange={(e) => {setPassword(e.target.value);}} required/>
+                </li>
+                <li>
+                <i/>
+                <a onClick={ () => changeView("PWReset")} href="#">Forgot Password?</a>
+                </li>
+            </ul>
+            </fieldset>
+            <button type="button" onClick={login} >Login</button>
+            <button type="button" onClick={() => changeView("SignUp")}>Create an Account</button>
+        </form>
+
+            {/* <form className="loginForm">
+                <h2>Sign Up!</h2>
                 <fieldset>
-                <legend>Log In</legend>
+                <legend>Create Account</legend>
                 <ul>
                     <li>
                     <label htmlFor="username">Username:</label>
-                    <input name="setUsername" type="text" id="username" onChange={(e) => {setUsername(e.target.value);}} required/>
+                    <input name="setUsername" type="text" id="username" onChange={(e) => {setUsernameReg(e.target.value);}}required/>
+                    </li>
+                    <li>
+                    <label htmlFor="email">Email:</label>
+                    <input name="setEmail" type="email" id="email"  onChange={(e) => {setEmailReg(e.target.value);}}required/>
                     </li>
                     <li>
                     <label htmlFor="password">Password:</label>
-                    <input name="setPassword" type="password" id="password" onChange={(e) => {setPassword(e.target.value);}} required/>
-                    </li>
-                    <li>
-                    <i/>
-                    <a onClick={ () => changeView("PWReset")} href="#">Forgot Password?</a>
+                    <input name="setPassword" type="password" id="password" onChange={(e) => {setPasswordReg(e.target.value);}}required/>
                     </li>
                 </ul>
                 </fieldset>
-                <button type="button" onClick={login} >Login</button>
-                <button type="button" onClick={() => changeView("SignUp")}>Create an Account</button>
-            </form>
-        </section>
-    )
+                <button type="submit" onClick={register}>Submit</button>
+                <button type="button" onClick={() => changeView("LogIn")}>Have an Account?</button>
+            </form> */}
+    </section>
+)
 
     // switch(currentView){
     //     case 'SignUp':
-    //         return (
-    //             <form className="loginForm">
-    //                 <h2>Sign Up!</h2>
-    //                 <fieldset>
-    //                 <legend>Create Account</legend>
-    //                 <ul>
-    //                     <li>
-    //                     <label htmlFor="username">Username:</label>
-    //                     <input name="setUsername" type="text" id="username" onChange={(e) => {setUsernameReg(e.target.value);}}required/>
-    //                     </li>
-    //                     <li>
-    //                     <label htmlFor="email">Email:</label>
-    //                     <input name="setEmail" type="email" id="email"  onChange={(e) => {setEmailReg(e.target.value);}}required/>
-    //                     </li>
-    //                     <li>
-    //                     <label htmlFor="password">Password:</label>
-    //                     <input name="setPassword" type="password" id="password" onChange={(e) => {setPasswordReg(e.target.value);}}required/>
-    //                     </li>
-    //                 </ul>
-    //                 </fieldset>
-    //                 <button type="submit" onClick={register}>Submit</button>
-    //                 <button type="button" onClick={() => changeView("LogIn")}>Have an Account?</button>
-    //             </form>
-    //         );
+            // return (
+            //     <form className="loginForm">
+            //         <h2>Sign Up!</h2>
+            //         <fieldset>
+            //         <legend>Create Account</legend>
+            //         <ul>
+            //             <li>
+            //             <label htmlFor="username">Username:</label>
+            //             <input name="setUsername" type="text" id="username" onChange={(e) => {setUsernameReg(e.target.value);}}required/>
+            //             </li>
+            //             <li>
+            //             <label htmlFor="email">Email:</label>
+            //             <input name="setEmail" type="email" id="email"  onChange={(e) => {setEmailReg(e.target.value);}}required/>
+            //             </li>
+            //             <li>
+            //             <label htmlFor="password">Password:</label>
+            //             <input name="setPassword" type="password" id="password" onChange={(e) => {setPasswordReg(e.target.value);}}required/>
+            //             </li>
+            //         </ul>
+            //         </fieldset>
+            //         <button type="submit" onClick={register}>Submit</button>
+            //         <button type="button" onClick={() => changeView("LogIn")}>Have an Account?</button>
+            //     </form>
+            // );
     //     case 'LogIn':
     //         return (
     //             <form className="loginForm">
