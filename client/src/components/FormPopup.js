@@ -19,7 +19,7 @@ export class FormPopup extends Component {
                         <label for="email"><b>Email</b></label>
                         {/*  */}
                         {/*  */}
-                        {/* if empty we would just not do anyhting with it or get the userdata from the session */}
+                        {/* if empty we would just not do anything with it or get the userdata from the session */}
                         {/*  */}
                         {/*  */}
                         <input type="text" placeholder="Enter Email"></input>
