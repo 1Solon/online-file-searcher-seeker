@@ -1,11 +1,11 @@
- import React from 'react'
+//  import React from 'react'
  import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
  import Register from './components/Register'
  import Login from './components/Login'
  import HomePage from './components/HomePage'
  import UserPage from './components/UserPage'
 
- function App() {
+function App() {
     return (
         <Router>
             <Routes>

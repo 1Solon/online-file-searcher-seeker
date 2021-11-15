@@ -33,9 +33,9 @@ export default function Login(){
 
     useEffect(() => {
         axios.get('api/login').then((response) => {
-          if (response.data.loggedIn == true) {
-            setLoginStatus(response.data.user[0].username);
-            nav('/homepage')
+          if(response.data.loggedIn == true) {
+              setLoginStatus(response.data.user[0].username);
+              nav('/homepage')
           }
         });
     }, []);
