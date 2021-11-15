@@ -1,0 +1,138 @@
+#backgroundPopup{
+    position:fixed;
+    top:0;
+    left:0;
+    background:black;
+    opacity: 0.6;
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+.row{
+    position: relative;
+    width: 100%;
+    right: -12px;
+    padding-bottom: 40px;
+    height: 100%;
+    width: 100%;
+}
+
+.body .row h1{
+    position: relative;
+    left: 90px;
+}
+
+.col-md-6{
+    padding: 40px;
+    width: 100%;
+}
+
+.body{
+    background-color: rgb(248, 249, 252);
+}
+
+#SidebarComponent{
+    text-align: center; 
+}
+
+.ImageDiv{
+    height: 300px;
+    width: 60%;
+    background-color:white;
+    text-align: center; 
+    border-radius: 5%;
+}
+
+.ImageDiv img{
+    position: relative;
+    top: 20px;
+    height: 70%;
+    width: 60%;
+    border-radius: 20%;
+}
+
+.ImageDiv button{
+    position: relative;
+    top: 20px;
+}
+
+.FilesDiv{
+    height: 300px;
+    width: 60%;
+    background-color:white;
+    text-align: center; 
+    border-radius: 5%;
+}
+
+.Titles{
+    background-color: rgb(240, 241, 244);
+    border-style:inset;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: darkslateblue;
+}
+
+.FilesDiv p{
+    position: relative;
+    top: 20px;
+    height: 10%;
+    width: 100%;
+}
+
+.UserDetailsDiv{
+    height: 300px;
+    width: 60%;
+    background-color:white;
+    text-align: center; 
+    border-radius: 5%;
+}
+
+.leftDetails{
+    padding-left: 10px;
+    width: 50%;
+    height: 81.3%;
+}
+
+.rightDetails{
+    position: relative;
+    bottom: 81.3%;
+    left: 50%;
+    padding-left: 10px;
+    width: 50%;
+    height: 81.3%;
+}
+
+#top{
+    padding-top: 10px;
+    padding-left: 10px;
+    height: 50%;
+    text-align: start; 
+}
+
+#bot{
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: start; 
+    height: 50%;
+}
+
+
+.FormBtn{
+    position:relative;
+    bottom: 460px;
+    left: 70%;
+}
+
+@media only screen and (max-width: 970px){
+    .FormBtn{
+        left: 67%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .FormBtn{
+        left: 38%;
+    }
+}
+

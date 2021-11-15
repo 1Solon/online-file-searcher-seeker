@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
-import './styles/HomePage.css';
-import axios from 'axios';
-import { Button, Card, Row } from 'react-bootstrap'
-import {SideBar} from './SideBar';
+import React, { Component } from 'react'
+import './styles/HomePage.css'
+import axios from 'axios'
+import { Button, Card, Row} from 'react-bootstrap'
+import {TopBar} from './TopBar'
+import {SideBar} from './SideBar'
+import {Footer} from './Footer'
+
+// import image from './images/user1.jpeg'
 
 axios.defaults.withCredentials = true;
 
@@ -20,7 +24,7 @@ class HomePage extends Component {
 
   // Defines the update state, this is required for us to run sql update requests, but I don't really understand it
   handleChange = (event) => {
-    let nam = event.target.name;
+    let nam = event.target.name
     let val = event.target.value
     this.setState({
       [nam]: val
@@ -49,7 +53,7 @@ class HomePage extends Component {
     axios.post('/api/insert', this.state)
     .then(() => { alert('success post') })
     console.log(this.state)
-    document.location.reload();
+    document.location.reload()
   }
 
   // This links with our delete request on the server, so we can trigger that action from the client
@@ -63,13 +67,13 @@ class HomePage extends Component {
   // This links with our edit request on the server, so we can trigger that action from the client
   edit = (id) => {
     axios.put(`/api/update/${id}`, this.state)
-    document.location.reload();
+    document.location.reload()
   } 
 
   // This actually renders the App.js, I just copied a React template here
   // The part immediatly below this handles the list in our app, I think we can reuse this for our documents later
   render() {
-    this.state.fetchData = Array.from(this.state.fetchData);
+    this.state.fetchData = Array.from(this.state.fetchData)
     let card = this.state.fetchData.map((val, key) => {
       return (
         <React.Fragment>
@@ -87,24 +91,61 @@ class HomePage extends Component {
     })
 
     return (
-      <div className='HomePage'>
-        <h1>Seeker</h1>
-        <div className='form'>
-          <input name='setBookName' placeholder='Enter Book Name' onChange={this.handleChange} />
-          <input name='setReview' placeholder='Enter Review' onChange={this.handleChange} />
-          <Button className='my-2' variant="primary" onClick={this.submit}>Submit</Button>
+      <div className='HomePageDiv'>
+        {/* TopBar */}
+        <div className='topBar'>
+          <TopBar/>
         </div>
+        
+        <Row className='file'>
+          <input type="text" placeholder="Search"></input>
+          <i className='bx bx-search'></i>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
+          <p>HI</p>
 
-        <div className='file'>
+        </Row>
+
+        {/* <div className='file'>
           <Row>{card}</Row>
-        </div>
+        </div> */}
 
+        {/* Footer */}
+        <div className='FooterDiv'>
+          <Footer/>
+        </div>
+        
         {/*Sidebar*/}
         <div className='sidebarDiv'>
           <SideBar/>
         </div>
       </div>
-    );
+    )
   }
 }
-export default HomePage;
+export default HomePage

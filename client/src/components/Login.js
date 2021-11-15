@@ -1,19 +1,19 @@
+
 import './styles/Login.css';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 
+
 export default function Login() {
     const [usernameReg, setUsernameReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
     const [loginStatus, setLoginStatus] = useState("");
-
     const nav = useNavigate()
+
 
     var currentView = 'LogIn'
 

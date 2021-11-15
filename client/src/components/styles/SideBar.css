@@ -1,13 +1,18 @@
 #SidebarComponent{
-    position:absolute;
+    /* position:absolute; */
+    position: fixed;
     height:100%;
-    top:140px;
+    top:0px;
     left:0;
     background-color: #001e3c;
-    border-radius: 8px; 
     width:80px;
     transition: all 0.5s ease;
 }
+
+#SidebarComponent h1{
+    color:white;
+}
+    
 
 #SidebarComponent.active{
     width: 240px;
@@ -49,11 +54,14 @@
 }
 
 #SidebarComponent.active #search_li:hover{
-    padding:0px;
+    background-color: #001e3c;
 }
 
 .bx-search-alt{
     position: absolute;
+    top:0%;
+    left:0%;
+    padding:15px;
     font-size: 22px;
     color: white;
 }
@@ -70,6 +78,15 @@
     border:none;
     text-align: center;
     opacity: 0;
+    
+}
+
+#search:focus{
+    position: relative;
+    margin-left: -15px;
+    width: 220px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #SidebarComponent.active #search{
@@ -108,7 +125,7 @@ i{
     font-size: 20px;
 }   
 
-a:link {
+a:link{
     text-decoration: none;
 }
 
@@ -127,9 +144,8 @@ li{
 }   
 
 #SidebarComponent li:hover {
-    background-color:rgb(64, 136, 165);
+    background-color: #23a6d5;
     border-radius: 10px;
-    padding: 19px;
 }
 
 #tooltip{
