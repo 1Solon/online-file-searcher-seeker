@@ -1,5 +1,6 @@
 #SidebarComponent{
     /* position:absolute; */
+    /* opacity:0.1; */
     position: fixed;
     height:100%;
     top:0px;
