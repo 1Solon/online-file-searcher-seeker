@@ -18,7 +18,7 @@ export default function Login(){
     }
     
     const login = () => {
-        axios.post('/api/login',{
+        axios.post('/api/login', {
             username: username,
             password: password,
         }).then((response) => {

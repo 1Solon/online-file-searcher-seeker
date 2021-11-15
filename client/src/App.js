@@ -9,7 +9,7 @@
     return (
         <Router>
             <Routes>
-                <Route exact path='/login' element={<Login />}/>
+                <Route exact path='/login' element={<Login/>}/>
                 <Route exact path='/homepage' element={<HomePage/>}/>
                 <Route exact path='/register' element={<Register/>}/>
                 <Route exact path='/userpage' element={<UserPage/>}/>

@@ -68,9 +68,17 @@ app.post("/register", (req, res) => {
   bcrypt.hash(setPassword, saltRounds, (err, hash) => {
     if(err){
       console.log(err)
+      res.send({err: err})
     }
     db.query("INSERT INTO USERS (USER_NAME, USER_EMAIL, USER_PASSWORD) VALUES (?, ?, ?)", [setUserName, setEmail, hash], (err, result) => {
-      console.log(result)
+      if(err){
+        console.log(err)
+        res.send({ err: err })
+      }
+      else{
+        console.log(result)
+        res.send({ userCreated: true })
+      }
     })
   })
 })
