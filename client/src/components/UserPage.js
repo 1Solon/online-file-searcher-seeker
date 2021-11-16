@@ -18,7 +18,7 @@ export class UserPage extends Component {
             <div className="bodyColour">
                 <div className="row no-gutters">
                     <h1>Profile</h1>
-                    <div className="col-md-6 no-gutters d-flex justify-content-center align-items-center">
+                    <div className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
                         <div className='ImageDiv'>
                             <img id="userImage1"src={image} alt="user1"/>
                             <br></br><br></br>
@@ -26,7 +26,7 @@ export class UserPage extends Component {
                         </div>
                     </div>
 
-                    <div className="col-md-6 no-gutters d-flex justify-content-center align-items-center">
+                    <div className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
                         <div className="UserDetailsDiv">
                             <div className="Titles">
                                 <h3>UserDetails</h3>
@@ -59,7 +59,7 @@ export class UserPage extends Component {
                     </div>
                 </div>
                 
-                <div  className="row no-gutters">
+                {/* <div  className="row no-gutters">
                     <div className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
                         <div className="FilesDiv">
                             <div className="Titles">
@@ -69,7 +69,7 @@ export class UserPage extends Component {
                             <p>file2</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div id="backgroundPopup"></div>
                     <Row className="FormBtn">
                         <FormPopup/>

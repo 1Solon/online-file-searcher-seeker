@@ -49,22 +49,28 @@ html,body{
 
 .form input{
   text-align: center;
-  border-radius: 6px;
   outline: none;
   border:none;
-  width: 250px;
-  margin: 10px;
+
 }
 
 button.my-2{
   position: relative;
-  top: -2px;
   height: 30%;
   text-align: center;
-  padding:2px;
 }
 
 .FooterDiv{
   position: fixed;
   bottom: 8em;
+}
+
+.file .uploadBtn{
+  top: 50%;
+  /* width: 30%; */
+  position: relative;
+  /* top:10em; */
+  right: 40%;
+  /* padding-right: em; */
+
 }
