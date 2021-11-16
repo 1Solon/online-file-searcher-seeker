@@ -55,9 +55,9 @@ render(){
         </Row>  
         
 
-        <Col id="col4" className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
+        {/* <Col id="col4" className="col-md-12 no-gutters d-flex justify-content-center align-items-center">
           <p className="copyright">N.Alvarez / S.Burges / A.Izarra Copyright</p>
-        </Col>
+        </Col> */}
 
       </footer>
     )

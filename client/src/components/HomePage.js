@@ -100,34 +100,8 @@ class HomePage extends Component {
         <Row className='file'>
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
-          <p>HI</p>
+          <Button className='uploadBtn'>Upload BTN</Button>
+          
 
         </Row>
 
