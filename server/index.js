@@ -49,14 +49,22 @@ app.use(
   })
 );
 
-// Sets a response on our server, so we can test if the server is alive or not
-app.get('/', (req, res) => {
-  // session=req.session;
-  //   if(session.userid){
-  //       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-  //   }else
-  //   res.sendFile('views/index.html',{root:__dirname})
-})
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
+app.get("/userID"), (req, res) => {
+  const username = req.body.username
+
+  db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, fields) => {
+    res.send(fields[0])
+  })
+
+}
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
@@ -74,14 +82,6 @@ app.post("/register", (req, res) => {
     })
   })
 })
-
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
-});
 
 app.post("/login", (req, res) => {
   const username = req.body.username
