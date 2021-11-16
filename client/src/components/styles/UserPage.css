@@ -1,34 +1,34 @@
 #backgroundPopup{
-    position:fixed;
-    top:0;
-    left:0;
+    position: fixed;
+    top: 0;
+    left: 0;
     background:black;
     opacity: 0.6;
-    width:100%;
-    height:100%;
-    display:none;
+    width: 100%;
+    height: 100%;
+    display: none;
 }
 
 .row{
     position: relative;
     width: 100%;
-    right: -12px;
-    padding-bottom: 40px;
+    right: -1em;
+    padding-bottom: 2.4em;
     height: 100%;
     width: 100%;
 }
 
 .body .row h1{
     position: relative;
-    left: 90px;
+    left: 2.75em;
 }
 
 .col-md-6{
-    padding: 40px;
+    padding: 2.5em;
     width: 100%;
 }
 
-.body{
+.bodyColour{
     background-color: rgb(248, 249, 252);
 }
 
@@ -37,51 +37,55 @@
 }
 
 .ImageDiv{
-    height: 300px;
+    height: 18.75em;
     width: 60%;
-    background-color:white;
+    /* background-color: white; */
+    background-color: rgb(248, 249, 252);
     text-align: center; 
     border-radius: 5%;
+    /* max-width:0%; */
+    margin-bottom: 5%;
 }
 
 .ImageDiv img{
     position: relative;
-    top: 20px;
+    top: 1.25em;
     height: 70%;
     width: 60%;
+    
     border-radius: 20%;
 }
 
 .ImageDiv button{
     position: relative;
-    top: 20px;
+    top: 1.25em;
 }
-
+/* 
 .FilesDiv{
-    height: 300px;
+    height: 18.75em;
     width: 60%;
     background-color:white;
     text-align: center; 
     border-radius: 5%;
-}
+} */
 
 .Titles{
     background-color: rgb(240, 241, 244);
     border-style:inset;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 0.625em;
+    padding-left: 0.625em;
     color: darkslateblue;
 }
 
 .FilesDiv p{
     position: relative;
-    top: 20px;
+    top: 1.25em;
     height: 10%;
     width: 100%;
 }
 
 .UserDetailsDiv{
-    height: 300px;
+    height: 18.75em;
     width: 60%;
     background-color:white;
     text-align: center; 
@@ -89,7 +93,7 @@
 }
 
 .leftDetails{
-    padding-left: 10px;
+    padding-left: 0.625em;
     width: 50%;
     height: 81.3%;
 }
@@ -98,35 +102,45 @@
     position: relative;
     bottom: 81.3%;
     left: 50%;
-    padding-left: 10px;
+    padding-left: 0.625em;
     width: 50%;
     height: 81.3%;
 }
 
 #top{
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 0.625em;
+    padding-left: 0.625em;
     height: 50%;
     text-align: start; 
 }
 
 #bot{
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 0.625em;
+    padding-left: 0.625em;
     text-align: start; 
     height: 50%;
 }
 
-
 .FormBtn{
     position:relative;
-    bottom: 460px;
-    left: 70%;
+    bottom: 4em;
+    right:105em;
+    /* left: 70%; */
+}
+
+@media only screen and (min-width: 1000px){
+    .FormBtn{
+        left: 45%;
+    }
+    .ImageDiv{
+        width: 40%;
+    }
+
 }
 
 @media only screen and (max-width: 970px){
     .FormBtn{
-        left: 67%;
+        left: 40%;
     }
 }
 

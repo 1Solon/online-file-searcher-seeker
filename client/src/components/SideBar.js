@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 
 export class SideBar extends Component {
   constructor(props) {
@@ -46,6 +47,18 @@ export class SideBar extends Component {
           </li>
 
           <li>
+            {/* <Router>
+              <div>
+                <Link to="/userpage" exact></Link>
+              </div>
+
+              <Switch>
+                <Route path="/userpage" exact>
+                  <UserPage/>
+                </Route>
+              </Switch>
+            </Router> */}
+
             <a href="#">
               <i className='bx bx-user'></i>
               <span>Account</span>

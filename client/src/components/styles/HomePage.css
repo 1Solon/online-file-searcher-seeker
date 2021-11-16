@@ -19,7 +19,7 @@ html,body{
   position: relative;
   padding-top: 2%;
   justify-content: center;
-  padding-left: 5%; 
+  padding-left: 50%; 
   height: 100%;
 }
 
@@ -27,17 +27,19 @@ html,body{
   border-radius: 3vw;
   outline: none;
   border-style:solid;
+  transform: translateX(-70%);
   width: 60%;
   text-align: center;
   background-color:white;
+  
 }
 
 .file .bx-search{
   color:black;
-  padding:10px;
+  padding:0.5em;
   width: 0vw;
   position: relative;
-  right: 59%;
+  right: 100%;
 }
 
 .form{
@@ -47,22 +49,28 @@ html,body{
 
 .form input{
   text-align: center;
-  border-radius: 6px;
   outline: none;
   border:none;
-  width: 250px;
-  margin: 10px;
+
 }
 
 button.my-2{
   position: relative;
-  top: -2px;
   height: 30%;
   text-align: center;
-  padding:2px;
 }
 
 .FooterDiv{
   position: fixed;
-  bottom: 100px;
+  bottom: 8em;
+}
+
+.file .uploadBtn{
+  top: 50%;
+  /* width: 30%; */
+  position: relative;
+  /* top:10em; */
+  right: 40%;
+  /* padding-right: em; */
+
 }
