@@ -19,7 +19,13 @@ export default function HomePage() {
     console.log(selectedFile.name + ' has sucessfully been uploaded to ');
 
     axios.post("api/uploadfile", formData);
-  };
+
+    
+    axios.get("api/session").then(resp => {
+      
+      console.log('the session storage is: ' + resp.data.id)
+    })
+  }; 
 
   return (
     <div className="HomePageDiv">

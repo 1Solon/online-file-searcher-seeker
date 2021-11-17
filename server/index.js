@@ -41,10 +41,10 @@ app.use(
   session({
     key: "userId",
     secret: "seeker",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
-      expires: 60 * 60 * 24,
+      expires: 1000 * 60 * 60 * 24,
     },
   })
 );
@@ -57,14 +57,16 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.get("/userID"), (req, res) => {
-  const username = req.body.username
+app.get("/session", (req, res) => {
+  const raw = req.session.user
 
-  db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, fields) => {
-    res.send(fields[0])
-  })
+  const id = raw[0].USER_ID
+  const name = raw[0].USER_NAME
+  const email = raw[0].USER_EMAIL
 
-}
+  res.send({id, name, email})
+})
+
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
