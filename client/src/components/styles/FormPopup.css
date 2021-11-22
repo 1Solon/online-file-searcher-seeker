@@ -12,18 +12,24 @@
 
 #popup .row1 h1{
     position: relative;
-    left: 0;
+    left: -1.5em;
+}
+
+#popup .row1 label{
+    position: relative;
+    left: -8.5em;
 }
 
 #popup .row1 input{
     border: 0.1em solid lightgrey;
     position: relative;
-    right: 0.625em;
+    right: 4.625em;
     width: 100%;
+    border-radius: 0.5em;
 }
 
 #popup .row1 input:focus {
-    border: 0.1em solid darkblue;
+    border: 0.2em solid darkblue;
   }
 
 #popup .row2 {
@@ -31,13 +37,11 @@
 }
   
  #popup .row2 .btn, .closeBtn {
-     position: inherit;
-    color: white;
+    position: relative;
     padding: 1em;
-    right: 0.25em;
+    right: 4.25em;
     border: none;
-    width: 100%;
-    margin-bottom: 0.3125em;
+    margin-top: 0.3125em;
     border-radius: 0.625em;
 }
   
@@ -53,16 +57,22 @@
 @media only screen and (max-width: 1675px){
     #popup{
         position: fixed;
-        bottom: 2em;
-        right: 8em;
+        bottom: 4em;
+        right: 6em;
     }
 }
 
 @media only screen and (max-width: 768px){
     #popup{
         position: fixed;
-        bottom: 4em;
-        right: 8em;
-        left: 9em;
+        bottom: 7em;
+        right: 6em;
+        left: 12em;
     }
+
+    #popup .row1 label{
+        position: relative;
+        left: -5.5em;
+    }
+    
 }

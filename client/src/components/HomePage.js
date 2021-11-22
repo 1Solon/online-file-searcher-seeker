@@ -100,9 +100,11 @@ class HomePage extends Component {
         <Row className='file'>
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
-          <Button className='uploadBtn'>Upload BTN</Button>
+          <div>
+            <Button className='uploadBtn'><i className='bx bx-upload'></i>  Upload</Button>
+            
+          </div>
           
-
         </Row>
 
         {/* <div className='file'>
