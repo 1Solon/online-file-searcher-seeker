@@ -115,5 +115,15 @@ app.post("/login", (req, res) => {
   })
 })
 
+app.post("/uploadfile", (req, res) => {
+  const setUserID = req.body.userID
+  const setFileName = req.body.fileName
+  const setFileCreation = '2000-01-01'
+  const setFilePath = 'stub'
+
+  db.query('INSERT INTO DATA (USER_ID, FILE_NAME, FILE_CREATION, FILE_PATH) VALUES (?, ?, ?, ?)', 
+  [setUserID, setFileName, setFileCreation, setFilePath], (err, result) => { console.log(result) })
+})
+
 // Starts the listener so we can communicate with the other services
 app.listen('3001', () => { })

@@ -12,18 +12,16 @@ export default function HomePage() {
   const [selectedFile, onFileChange] = useState("")
 
   let onFileUpload = () => {
-    let formData = ("myfile", selectedFile, selectedFile.name);
-
-    axios.get("api/userID", )
-
-    console.log(selectedFile.name + ' has sucessfully been uploaded to ');
-
-    axios.post("api/uploadfile", formData);
-
-    
     axios.get("api/session").then(resp => {
-      
-      console.log('the session storage is: ' + resp.data.id)
+      let userID = resp.data.id
+
+      console.log('a file called: ' + selectedFile.name + ' has been uploaded under the user ID: ' + userID);
+
+      axios.post("api/uploadfile", { 
+        fileName : selectedFile.name,
+        userID : userID,
+        file : selectedFile
+      });
     })
   }; 
 
