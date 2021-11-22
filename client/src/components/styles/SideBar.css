@@ -1,6 +1,4 @@
 #SidebarComponent{
-    /* position:absolute; */
-    /* opacity:0.1; */
     position: fixed;
     height:100%;
     top:0;
@@ -79,7 +77,6 @@
     border:none;
     text-align: center;
     opacity: 0;
-    
 }
 
 #search:focus{
@@ -101,6 +98,7 @@
 }
 
 span{
+    pointer-events: none;
     position: relative;
     bottom: 54px;
     padding: 5px;
@@ -126,8 +124,27 @@ i{
     font-size: 20px;
 }   
 
-a:link{
+#SidebarComponent.active a:link{
+    position: relative;
     text-decoration: none;
+    display:flex;
+    transform: translate(-0.85em, -0.85em);
+    width: 12.9em;
+    height: 3em;
+    padding: 0.8em
+}
+
+a:link{
+    display: flex;
+    padding: 0.9em;
+    width: 3em;
+    height: 3em;
+    transform: translate(-0.9em, -0.8em);
+    text-decoration: none;
+}
+
+span{
+    transform: translateY(-0.45em); 
 }
 
 li{
@@ -150,6 +167,7 @@ li{
 }
 
 #tooltip{
+    pointer-events: none;
     position: absolute;
     bottom: 5px;
     width: 80px;

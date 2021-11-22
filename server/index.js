@@ -41,22 +41,32 @@ app.use(
   session({
     key: "userId",
     secret: "seeker",
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     cookie: {
-      expires: 60 * 60 * 24,
+      expires: 1000 * 60 * 60 * 24,
     },
   })
 );
 
-// Sets a response on our server, so we can test if the server is alive or not
-app.get('/', (req, res) => {
-  // session=req.session;
-  //   if(session.userid){
-  //       res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-  //   }else
-  //   res.sendFile('views/index.html',{root:__dirname})
+app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+  }
+});
+
+app.get("/session", (req, res) => {
+  const raw = req.session.user
+
+  const id = raw[0].USER_ID
+  const name = raw[0].USER_NAME
+  const email = raw[0].USER_EMAIL
+
+  res.send({id, name, email})
 })
+
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
@@ -119,6 +129,16 @@ app.post("/login", (req, res) => {
       res.send({message: "User does not exist"})
     }
   })
+})
+
+app.post("/uploadfile", (req, res) => {
+  const setUserID = req.body.userID
+  const setFileName = req.body.fileName
+  const setFileCreation
+  const setFilePath
+
+  db.query('INSERT INTO FILE (USER_ID, FILE_NAME, FILE_CREATION, FILE_PATH) VALUES (?, ?, ?, ?)', 
+  [setUserID, setFileName, setFileCreation, setFilePath], (err, result) => { console.log(result) })
 })
 
 // Starts the listener so we can communicate with the other services

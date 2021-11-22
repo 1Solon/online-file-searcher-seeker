@@ -2,7 +2,7 @@
 
 let sidebar = document.querySelector("#SidebarComponent")
 let closeBtn = document.querySelector("#btn")
-let searchBtn = document.querySelector(".bx-search-alt") //.bx-search-alt  / #search_li
+// let searchBtn = document.querySelector(".bx-search-alt") //.bx-search-alt  / #search_li
 
 // function to check when user clicks on menu button, opens/closes sidebar
 btn.onclick = function(){
@@ -11,10 +11,10 @@ btn.onclick = function(){
 }
 
 // function to check when user clicks on search button, opens/closes sidebar
-searchBtn.onclick = function(){
-    var toggle = sidebar.classList.toggle("active")
-    checker(toggle)
-}
+// searchBtn.onclick = function(){
+//     var toggle = sidebar.classList.toggle("active")
+//     checker(toggle)
+// }
 
 // Checks if Sidebar is open or closed
 checker = function(toggle){
@@ -27,7 +27,7 @@ checker = function(toggle){
         if (toggle == true){
             var x = document.getElementsByClassName("file")
             x[0].style.transition = "all 0.5s ease"
-            x[0].style.paddingLeft = "65%"  
+            x[0].style.paddingLeft = "10%"  
             
             // icon change
             closeBtn.classList.replace("bx-menu", "bx-menu-alt-right")
@@ -35,7 +35,7 @@ checker = function(toggle){
         else{
             var x = document.getElementsByClassName("file")
             x[0].style.transition = "all 0.5s ease"
-            x[0].style.paddingLeft = "50%"
+            x[0].style.paddingLeft = "0%"
             
             closeBtn.classList.replace("bx-menu-alt-right","bx-menu")
         }
@@ -68,4 +68,3 @@ checker = function(toggle){
 
     // }
 }
-
