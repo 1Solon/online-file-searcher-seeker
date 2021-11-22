@@ -21,9 +21,14 @@ export default function Register(){
             username: usernameReg,
             email: emailReg,
             password: passwordReg,
-        }).then(() => { alert('success post') })
-        // console.log(this.state)
-        // document.location.reload();
+        }).then((respones) => {
+            if(respones){
+                sendLogin()
+            }
+            else{
+                console.log("Error!")
+            }
+        })
     }
 
     return (
@@ -47,7 +52,7 @@ export default function Register(){
                     </li>
                 </ul>
                 </fieldset>
-                <button type="submit" onClick={register}>Submit</button>
+                <button type="button" onClick={register}>Submit</button>
                 <button type="button" onClick={() => sendLogin()}>Have an Account?</button>
             </form> 
         </section>
