@@ -1,11 +1,11 @@
 const express = require('express')
 const mysql = require('mysql2')
 const cors = require('cors')
-
-
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
+const fs = require('fs')
+const path = require('path')
 
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
 const saltRounds = 10
@@ -134,8 +134,29 @@ app.post("/login", (req, res) => {
 app.post("/uploadfile", (req, res) => {
   const setUserID = req.body.userID
   const setFileName = req.body.fileName
-  const setFileCreation = '2000-01-01'
   const setFilePath = 'stub'
+
+  // Gets current date
+  var setFileCreation = new Date()
+  var dd = String(setFileCreation.getDate()).padStart(2, '0')
+  var mm = String(setFileCreation.getMonth() + 1).padStart(2, '0')
+  var yyyy = setFileCreation.getFullYear()
+  setFileCreation = yyyy + '-' + mm + '-' + dd
+
+  // Creates a folder if it does not already exist, if it does exist, skip
+  fs.mkdir(process.cwd() + '/seeker/files', { recursive : true }, (e) => {
+    if (e) {
+      console.error('Something has gone wrong: ', e)
+    } else {
+      console.log('Folder created sucessfully.')
+    }
+  })
+
+  // Adds the uploaded file to the folder
+  //TODO: https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp
+
+
+
 
   db.query('INSERT INTO FILE (USER_ID, FILE_NAME, FILE_CREATION, FILE_PATH) VALUES (?, ?, ?, ?)', 
   [setUserID, setFileName, setFileCreation, setFilePath], (err, result) => { console.log(result) })
