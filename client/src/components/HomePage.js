@@ -36,7 +36,7 @@ export default function HomePage() {
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
           <div>
-            <Button className='uploadBtn'><i className='bx bx-upload'></i>  Upload</Button>
+            <Button className='uploadBtn' onClick={(e) => {onFileUpload()}} ><i className='bx bx-upload'></i>Upload</Button>
             <input type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
             
           </div>
