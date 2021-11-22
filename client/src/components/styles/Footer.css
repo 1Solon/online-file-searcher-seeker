@@ -35,6 +35,11 @@
     height: 5em;
 }
 
+.footer #col3{
+    transform: translateX(-1.5em);
+}
+
+
 .footer .rightUL{
     margin-right: -0.1em;
 }
@@ -56,21 +61,6 @@
     opacity: 1;
     font-weight: bold;
 }
-
-/* .footer #col4{
-    padding-left: 8em;
-    background-color:green;
-} */
-
-/* .footer .copyright{
-    color: gray;
-    opacity: 0.8;
-} */
-
-/* .footer .copyright:hover{
-    color: gold;
-    font-weight: bold;
-} */
 
 .footer .row{ 
     margin-bottom: -2.5em;

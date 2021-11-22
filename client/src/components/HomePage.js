@@ -38,12 +38,18 @@ export default function HomePage() {
 
         <input type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
         
-        <button onClick={() => {onFileUpload()}}> Upload </button>
-      </Row>
 
-      {/* <div className='file'>
-          <Row>{card}</Row>
-        </div> */}
+        <Row className='file'>
+          <input type="text" placeholder="Search"></input>
+          <i className='bx bx-search'></i>
+          <div>
+            <Button className='uploadBtn'><i className='bx bx-upload'></i>  Upload</Button>
+            
+          </div>
+          
+        </Row>
+
+        {/* <div className='file'>
 
       {/* Sidebar */}
       <div className="sidebarDiv">
