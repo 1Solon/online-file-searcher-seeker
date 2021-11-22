@@ -32,21 +32,14 @@ export default function HomePage() {
         <TopBar />
       </div>
 
-      <Row className="file">
-        <input type="text" placeholder="Search"></input>
-        <i className="bx bx-search"></i>
-
-        <input type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
-        
-
         <Row className='file'>
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
           <div>
             <Button className='uploadBtn'><i className='bx bx-upload'></i>  Upload</Button>
+            <input type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
             
           </div>
-          
         </Row>
 
         {/* <div className='file'>
