@@ -49,24 +49,23 @@ app.use(
   })
 );
 
-app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    res.send({ loggedIn: false });
-  }
-});
-
 app.get("/session", (req, res) => {
   const raw = req.session.user
+  let id = 0
+  let name = ""
+  let email = ""
 
-  const id = raw[0].USER_ID
-  const name = raw[0].USER_NAME
-  const email = raw[0].USER_EMAIL
-
-  res.send({id, name, email})
+  try{
+    id = raw[0].USER_ID
+    name = raw[0].USER_NAME
+    email = raw[0].USER_EMAIL
+    res.send({id, name, email})
+  }
+  catch(err){
+    console.log('Estoy pasando por la sesion')
+    res.send({id, name, email})
+  }
 })
-
 
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
