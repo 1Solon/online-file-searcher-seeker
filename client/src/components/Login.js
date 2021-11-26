@@ -36,7 +36,6 @@ export default function Login(){
       useEffect(() => {
         axios.get('api/session').then((response) => {
           userID = response.data.id
-          console.log("Sesision", userID)
           if(userID == 1) {
               nav('/homepage')
           }

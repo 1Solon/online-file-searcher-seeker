@@ -67,6 +67,10 @@ app.get("/session", (req, res) => {
   }
 })
 
+app.get("/delete-session", (req, res) => {
+  req.session.destroy()
+})
+
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
   const setUserName = req.body.username
