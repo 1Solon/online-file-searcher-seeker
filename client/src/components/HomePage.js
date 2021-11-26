@@ -1,15 +1,27 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "./styles/HomePage.css";
 import axios from "axios";
-import { Button, Card, Row } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import { TopBar } from "./TopBar";
 import { SideBar } from "./SideBar";
 import { Footer } from "./Footer";
+import { useNavigate } from 'react-router-dom'
 
 axios.defaults.withCredentials = true;
 
 export default function HomePage() {
   const [selectedFile, onFileChange] = useState("")
+
+  const nav = useNavigate()
+
+  useEffect(() => {  
+    axios.get('api/session').then((response) => {
+      let userID = response.data.id
+      if(userID == 0) {
+          nav('/login')
+      }
+    });
+  }, []);
 
   let onFileUpload = () => {
     axios.get("api/session").then(resp => {
@@ -35,11 +47,13 @@ export default function HomePage() {
         <Row className='file'>
           <input type="text" placeholder="Search"></input>
           <i className='bx bx-search'></i>
-          <div>
+          
+          <Row>
+          <div id="col1" className="col-md-6">
+            <input className="ChooseFile" type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
             <Button className='uploadBtn' onClick={(e) => {onFileUpload()}} ><i className='bx bx-upload'></i>Upload</Button>
-            <input type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
-            
           </div>
+          </Row>
         </Row>
 
         {/* <div className='file'>

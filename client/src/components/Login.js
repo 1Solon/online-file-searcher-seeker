@@ -1,5 +1,5 @@
 import './styles/Login.css';
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 
@@ -9,6 +9,8 @@ export default function Login(){
     const [loginStatus, setLoginStatus] = useState("");
 
     const nav = useNavigate()
+
+    let userID = -1
 
     axios.defaults.withCredentials = true;
     
@@ -21,23 +23,25 @@ export default function Login(){
             username: username,
             password: password,
         }).then((response) => {
-            if(!response.data.message) {
-              setLoginStatus(response.data.message);
+            if(userID = 1) {
+            //   setLoginStatus(response.data.message);
               nav('/homepage')
             } else {
-              setLoginStatus(response.data[0].username);
+            //   setLoginStatus(response.data[0].username);
+                nav('/login')
             }
           });
       };
 
-    useEffect(() => {
-        axios.get('api/login').then((response) => {
-          if(response.data.loggedIn == true) {
-              setLoginStatus(response.data.user[0].username);
+      useEffect(() => {
+        axios.get('api/session').then((response) => {
+          userID = response.data.id
+          console.log("Sesision", userID)
+          if(userID == 1) {
               nav('/homepage')
           }
         });
-    }, []);
+      }, []);
 
     return(
         <section id="entry-page">
