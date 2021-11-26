@@ -27,11 +27,28 @@
     left: 38.5%;
 }
 
-.logo, .bxl-docker{
+.logo, .logoImg{
     display:flex;
-    font-size:40px;
     margin-top:10px;
-    padding-left: 5px;
+    position: relative;
+    right: 0.3em;
+    width: 4.3em;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 0.3em;
+    transition: all 0.5s ease;
+}
+
+#SidebarComponent.active .logoImg{
+    position: relative;
+    left: 1.3em;
+    width: 10em;
+    border-top-right-radius: 3em;
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 2em;
+    border-bottom-right-radius: 0.3em;
+    transition: all 0.5s ease;
 }
 
 .logoName, .logo{

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import image from './images/Logo.png'
 
 export class SideBar extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ export class SideBar extends Component {
         <i className='bx bx-menu' id="btn"></i>
         
         <div className="logo">
-          <i className='bx bxl-docker'></i>
-          <h1 className="logoName">Seeker</h1>
+          <img className="logoImg"src={image} alt="Logo"/>
+          {/* <h1 className="logoName">Seeker</h1> */}
         </div>
         
         <ul className="navList">
