@@ -54,16 +54,17 @@ app.get("/session", (req, res) => {
   let id = 0
   let name = ""
   let email = ""
+  let isSession = false
 
-  try{
+  try {
     id = raw[0].USER_ID
     name = raw[0].USER_NAME
     email = raw[0].USER_EMAIL
-    res.send({id, name, email})
+    isSession = true
+    res.send({isSession, id, name, email})
   }
   catch(err){
-    console.log('Estoy pasando por la sesion')
-    res.send({id, name, email})
+    res.send(isSession)
   }
 })
 
@@ -96,17 +97,10 @@ app.post("/register", (req, res) => {
   })
 })
 
-// app.get("/login", (req, res) => {
-//   if(req.session.user) {
-//     res.send({ loggedIn: true, user: req.session.user });
-//   } else {
-//     res.send({ loggedIn: false });
-//   }
-// });
-
 app.post("/login", (req, res) => {
   const username = req.body.username
   const password = req.body.password
+  const isLogged = false
 
   db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, result) => {
     console.log(result);
@@ -117,19 +111,19 @@ app.post("/login", (req, res) => {
       bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
         console.log(response)
         if(response){
-            console.log('OK')
             req.session.user = result
-            console.log(req.session.user);
             res.send(result);
         }
         else{
-          res.send({message: "Wrong username or password combination!"})
+          // res.send({message: "Wrong username or password combination!"})
+          res.send(isLogged)
           console.log("Login Failed!")
         }
       })
     }
     else{
-      res.send({message: "User does not exist"})
+      // res.send({message: "User does not exist"})
+      res.send(isLogged)
     }
   })
 })

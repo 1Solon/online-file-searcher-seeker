@@ -10,8 +10,6 @@ export default function Login(){
 
     const nav = useNavigate()
 
-    let userID = -1
-
     axios.defaults.withCredentials = true;
     
     const sendRegister = () => {
@@ -23,21 +21,23 @@ export default function Login(){
             username: username,
             password: password,
         }).then((response) => {
-            if(userID = 1) {
-            //   setLoginStatus(response.data.message);
-              nav('/homepage')
-            } else {
-            //   setLoginStatus(response.data[0].username);
-                nav('/login')
+            if(!response.data){
+                alert('ERROR. Username or password incorrect')
+            }
+            else{
+                nav('/homepage')
             }
           });
       };
 
       useEffect(() => {
         axios.get('api/session').then((response) => {
-          userID = response.data.id
-          if(userID == 1) {
+          let isSession = response.data.isSession
+          if(isSession) {
               nav('/homepage')
+          }
+          else{
+              nav('/login')
           }
         });
       }, []);
