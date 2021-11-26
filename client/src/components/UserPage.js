@@ -34,46 +34,46 @@ export class UserPage extends Component {
                                     <h3>UserDetails</h3>
                                 </div>    
 
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h6 class="mb-0">Firstname:</h6>
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-md-3">
+                                            <h6 className="mb-0">Firstname:</h6>
                                         </div>
 
-                                        <div class="col-md-9">
+                                        <div className="col-md-9">
                                             Jeff
                                         </div>
                                     </div>
                                     <hr />
 
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h6 class="mb-0">Lastname:</h6>
+                                    <div className="row">
+                                        <div className="col-md-3">
+                                            <h6 className="mb-0">Lastname:</h6>
                                         </div>
 
-                                        <div class="col-md-9">
+                                        <div className="col-md-9">
                                             Kisses
                                         </div>
                                     </div>
                                     <hr />
 
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h6 class="mb-0">Username:</h6>
+                                    <div className="row">
+                                        <div className="col-md-3">
+                                            <h6 className="mb-0">Username:</h6>
                                         </div>
 
-                                        <div class="col-md-9">
+                                        <div className="col-md-9">
                                             Doggo44
                                         </div>
                                     </div>
                                     <hr />
 
-                                    <div class="row">
-                                        <div class="col-md-3">
+                                    <div className="row">
+                                        <div className="col-md-3">
                                             <h6>Email:</h6>
                                         </div>
 
-                                        <div class="col-md-9">
+                                        <div className="col-md-9">
                                             Doggo44@amazon.com
                                         </div>
                                     </div>
