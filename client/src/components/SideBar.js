@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
 import image from './images/Logo.png'
+import axios from "axios";
 
 export class SideBar extends Component {
   constructor(props) {
     super(props)
+  }
+
+  removeSession(){
+    axios.get('/api/delete-session', {})
   }
 
   render(){
@@ -53,12 +59,13 @@ export class SideBar extends Component {
             </a>
             <span id="tooltip">Account</span>
           </li>
-          
+
           <li>
-            <a href="http://localhost:3000/login">
-              <i className='bx bx-log-out'></i>
+            <a onClick={this.removeSession} href="http://localhost:3000/login"><i className='bx bx-log-out'></i></a>
+            {/* <a href="http://localhost:3000/login" >
+              <i className='bx bx-log-out'></i> */}
               <span>Log out</span>
-            </a>
+            {/* </a> */}
             <span id="tooltip">Log out</span>
           </li>
         </ul>
