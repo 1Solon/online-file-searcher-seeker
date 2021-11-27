@@ -17,8 +17,13 @@ export default function HomePage() {
   useEffect(() => {  
     axios.get('api/session').then((response) => {
       let isSession = response.data.isSession
+      localStorage.setItem('username', response.data.name);
+      localStorage.setItem('email', response.data.email);
       if(!isSession) {
           nav('/login')
+      }
+      else{
+        nav('/homepage')
       }
     });
   }, []);

@@ -15,7 +15,7 @@ export class TopBar extends Component {
             <Col className="rightTopbar">
                 <div className="vl"></div>
                 <img id="circularUser"src={image} alt="user1"/>
-                <p>userName</p>
+                <p>{localStorage.getItem('username')}</p>
             </Col>
         </div>
         )

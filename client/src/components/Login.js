@@ -30,17 +30,17 @@ export default function Login(){
           });
       };
 
-      useEffect(() => {
+    useEffect(() => {
         axios.get('api/session').then((response) => {
-          let isSession = response.data.isSession
-          if(isSession) {
-              nav('/homepage')
-          }
-          else{
-              nav('/login')
-          }
+            let isSession = response.data.isSession
+            if(isSession) {
+                nav('/homepage')
+            }
+            else{
+                nav('/login')
+            }
         });
-      }, []);
+    }, []);
 
     return(
         <section id="entry-page">
