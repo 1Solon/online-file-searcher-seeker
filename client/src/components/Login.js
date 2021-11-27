@@ -63,7 +63,7 @@ export default function Login(){
                         </li>
                 </ul>
                 </fieldset>
-                <button type="button" onClick={login} >Login</button>
+                <button type="button" onClick={login}>Login</button>
                 <button type="button" onClick={() => sendRegister()}>Create an Account</button>
             </form>
         </section>   
