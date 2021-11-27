@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const fs = require('fs')
 const path = require('path')
+const formidable = require('formidable')
 
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
 const saltRounds = 10
@@ -133,7 +134,6 @@ app.post("/login", (req, res) => {
 app.post("/uploadfile", (req, res) => {
   const setUserID = req.body.userID
   const setFileName = req.body.fileName
-  const setFilePath = 'stub'
 
   // Gets current date
   var setFileCreation = new Date()
@@ -151,9 +151,17 @@ app.post("/uploadfile", (req, res) => {
     }
   })
 
-  // Adds the uploaded file to the folder
-  //TODO: https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp
-
+  // Recieves the file from the frontend
+  const fileInput = new formidable.IncomingForm()
+  fileInput.parse(req.body.file, function (err, fields, files) {
+    var tempPath = files.filetoupload.filepath
+    var storePath = "/seeker/files" + files.filetoupload.originalFilename
+    fs.rename(tempPath, storePath, function (err){
+      if (err) throw (err)
+      res.write('File Uploaded')
+      res.end()
+    })
+  })
 
 
 
