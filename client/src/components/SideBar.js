@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import image from './images/Logo.png'
+import image from './images/Logo2.png'
 import axios from "axios";
 
 export class SideBar extends Component {
@@ -18,7 +18,7 @@ export class SideBar extends Component {
         <i className='bx bx-menu' id="btn"></i>
         
         <div className="logo">
-          <img className="logoImg"src={image} alt="Logo"/>
+          <img className="logoImg"src={image} alt="Logo2"/>
           {/* <h1 className="logoName">Seeker</h1> */}
         </div>
         
@@ -62,10 +62,7 @@ export class SideBar extends Component {
 
           <li>
             <a onClick={this.removeSession} href="http://localhost:3000/login"><i className='bx bx-log-out'></i></a>
-            {/* <a href="http://localhost:3000/login" >
-              <i className='bx bx-log-out'></i> */}
-              <span>Log out</span>
-            {/* </a> */}
+            <span className="Logout">Log out</span>
             <span id="tooltip">Log out</span>
           </li>
         </ul>
