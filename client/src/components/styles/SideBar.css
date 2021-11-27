@@ -205,3 +205,14 @@ li:hover #tooltip {
 #SidebarComponent.active #tooltip{
     display: none;
 }
+
+#SidebarComponent.active .Logout{
+    position: relative;
+    bottom: 2.8em;
+    left: 2.3em;
+}
+
+#SidebarComponent .bx-log-out{
+    position: relative;
+    right: 0.15em;
+}

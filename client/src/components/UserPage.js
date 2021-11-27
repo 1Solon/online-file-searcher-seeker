@@ -68,7 +68,7 @@ export default function UserPage(){
                                             {localStorage.getItem('email')}
                                         </div>
                                     </div>
-                                    <hr />
+                                    <hr/>
 
                                     <div class="row">
                                         <div class="col-md-3">
@@ -79,7 +79,7 @@ export default function UserPage(){
                                             ***************
                                         </div>
                                     </div>
-                                    <hr />
+                                    <hr/>
                                     
                                     <div id="backgroundPopup"></div>
                                     <Row className="FormBtn">

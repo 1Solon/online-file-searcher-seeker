@@ -15,30 +15,25 @@ export class FormPopup extends Component {
             <div id="popup">
                 <Row className="row1">
                     <h1>Change Details</h1>
-                    <Col>
-                        <label for="email"><b>Email</b></label>
-                        {/*  */}
-                        {/*  */}
-                        {/* if empty we would just not do anything with it or get the userdata from the session */}
-                        {/*  */}
-                        {/*  */}
+                    {/* <Col>
+                        <label htmlFor="email"><b>Email</b></label>
                         <input type="text" placeholder="Enter Email"></input>
-                    </Col>
+                    </Col> */}
 
                     <Col>
-                        <label for="psw"><b>Password</b></label>
+                        <label htmlFor="psw"><b>Password</b></label>
                         <input type="password" placeholder="Enter Password"></input>
                     </Col>
                 </Row>
 
                 <Row className="row1">
-                    <Col>
-                        <label><b>Firstname</b></label>
+                    {/* <Col>
+                        <label htmlFor="FName"><b>Firstname</b></label>
                         <input type="text" placeholder="Enter Firstname"></input>
-                    </Col>
+                    </Col> */}
 
                     <Col>
-                        <label><b>Username</b></label>
+                        <label htmlFor="user"><b>Username</b></label>
                         <input type="text" placeholder="Enter Username"></input>
                     </Col>
                 </Row>
