@@ -16,8 +16,8 @@ export default function HomePage() {
 
   useEffect(() => {  
     axios.get('api/session').then((response) => {
-      let userID = response.data.id
-      if(userID == 0) {
+      let isSession = response.data.isSession
+      if(!isSession) {
           nav('/login')
       }
     });
