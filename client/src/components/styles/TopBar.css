@@ -14,6 +14,17 @@
     left: 75%;
 }
 
+#userLink{
+    position: relative;
+    left: 89%;
+}
+
+#userLink2{
+    position: relative;
+    left: 75%;
+    top: 55%;
+}
+
 #circularUser{
     position: relative;
     bottom: 5.5em;
@@ -31,11 +42,11 @@
 }
 
 @media only screen and (max-width: 768px){
-    #circularUser{
+    #userLink{
         left: 85%;
     }
-    .TopBar p{
-        left: 70%;
+    .TopBar #userLink2{
+        left: 65%;
     }
 
     .vl{

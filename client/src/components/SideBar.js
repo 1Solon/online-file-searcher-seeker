@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
-import image from './images/Logo2.png'
+import image from './images/Logo.png'
 import axios from "axios";
 
 export class SideBar extends Component {
@@ -18,17 +18,10 @@ export class SideBar extends Component {
         <i className='bx bx-menu' id="btn"></i>
         
         <div className="logo">
-          <img className="logoImg"src={image} alt="Logo2"/>
-          {/* <h1 className="logoName">Seeker</h1> */}
+          <img className="logoImg"src={image} alt="Logo"/>
         </div>
         
         <ul className="navList">
-          {/* <li id='search_li'>
-            <i className='bx bx-search-alt'></i>
-            <input type="text" placeholder="Search" id="search"></input>
-            <span id="tooltip">Search</span>
-          </li> */}
-
           <li>
             <a href="http://localhost:3000/homepage">
               <i className='bx bx-home'></i>
@@ -36,21 +29,6 @@ export class SideBar extends Component {
             </a>
             <span id="tooltip">Home</span>
           </li>
-
-          {/* <li>
-            <a href="#">
-              <i className='bx bx-star' ></i>
-              <span>Starred</span>
-            </a>
-            <span id="tooltip">Starred</span>
-          </li> */}
-
-          {/* open a new menu (to sort) */}
-          {/* <li>
-            <i className='bx bx-sort' ></i>
-            <span>Sort</span>
-            <span id="tooltip">Sort</span>
-          </li> */}
 
           <li>
             <a href="http://localhost:3000/userpage">
