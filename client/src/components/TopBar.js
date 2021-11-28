@@ -18,7 +18,7 @@ export class TopBar extends Component {
                   <img id="circularUser"src={image} alt="user1"/>
                 </a>
                 <a id="userLink2" href="http://localhost:3000/userpage">
-                  <p id="userName">userName</p>
+                  <p id="userName">{localStorage.getItem('userName')}</p>
                 </a>
             </Col>
         </div>
