@@ -23,24 +23,27 @@ export default function UserPage(){
     }, []);
 
     const removeSession = ()  => {
-        // alert("Are you sure?")
-        window.confirm("Press a button!")
-        // if
-            // console.log('Thing was saved to the database.')
+        if(window.confirm("Are you sure you want to delete your account?")){
+            console.log("true")
+
+            // 1st delete files
+
+            // 2nd delete user
+
+            // 3rd delete local storage
+            localStorage.removeItem('id');
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+
+            // 4th delete session
+            axios.get('/api/delete-session', {})
+            nav('/login')
+
+        }
+        else{
+            console.log("false")
+        }
         
-        // else{
-        //     // Do nothing!
-        //     console.log('Thing was not saved to the database.');
-        // }
-        
-        // confirm('Are you sure you want to save this thing into the database?')) {
-        //     // Save it!
-        //     console.log('Thing was saved to the database.');
-        //   } else {
-        //     // Do nothing!
-        //     console.log('Thing was not saved to the database.');
-        //   }
-        // axios.get('/api/delete-session', {})
     }
 
     return(
