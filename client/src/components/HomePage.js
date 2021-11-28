@@ -5,37 +5,33 @@ import { Button, Row } from "react-bootstrap";
 import { TopBar } from "./TopBar";
 import { SideBar } from "./SideBar";
 import { Footer } from "./Footer";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
 export default function HomePage() {
-  const [selectedFile, onFileChange] = useState("")
+  const [selectedFile, onFileChange] = useState("");
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
-  useEffect(() => {  
-    axios.get('api/session').then((response) => {
-      let isSession = response.data.isSession
-      if(!isSession) {
-          nav('/login')
+  useEffect(() => {
+    axios.get("api/session").then((response) => {
+      let isSession = response.data.isSession;
+      if (!isSession) {
+        nav("/login");
       }
     });
   }, []);
 
   let onFileUpload = () => {
-    axios.get("api/session").then(resp => {
-      let userID = resp.data.id
+    axios.get("api/session").then((resp) => {
+      const userID = resp.data.id
+      const formData = new FormData()
+      formData.append("file", selectedFile)
 
-      console.log('a file called: ' + selectedFile.name + ' has been uploaded under the user ID: ' + userID);
-
-      axios.post("api/uploadfile", { 
-        fileName : selectedFile.name,
-        userID : userID,
-        file : selectedFile
-      });
-    })
-  }; 
+      axios.post("api/uploadfile", formData).then(response => console.log(response))
+    });
+  };
 
   return (
     <div className="HomePageDiv">
@@ -44,19 +40,30 @@ export default function HomePage() {
         <TopBar />
       </div>
 
-        <Row className='file'>
-          <input type="text" placeholder="Search"></input>
-          <i className='bx bx-search'></i>
-          
-          <Row>
-          <div id="col1" className="col-md-6">
-            <input className="ChooseFile" type='file' onChange={(e) => {onFileChange(e.target.files[0])}} />
-            <Button className='uploadBtn' onClick={(e) => {onFileUpload()}} ><i className='bx bx-upload'></i>Upload</Button>
-          </div>
-          </Row>
-        </Row>
+      <Row className="file">
+        <input type="text" placeholder="Search"></input>
+        <i className="bx bx-search"></i>
 
-        {/* <div className='file'>
+        <Row>
+          <div id="col1" className="col-md-6">
+            <input
+              className="ChooseFile"
+              type="file"
+              onChange={(e) => {
+                onFileChange(e.target.files[0]);
+              }}
+            />
+            <Button
+              className="uploadBtn"
+              onClick={(e) => {
+                onFileUpload();
+              }}
+            >
+              <i className="bx bx-upload"></i>Upload
+            </Button>
+          </div>
+        </Row>
+      </Row>
 
       {/* Sidebar */}
       <div className="sidebarDiv">
