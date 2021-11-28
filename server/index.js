@@ -1,13 +1,11 @@
 const express = require('express')
+const fileUpload = require('express-fileupload')
 const mysql = require('mysql2')
 const cors = require('cors')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const fs = require('fs')
-const path = require('path')
-const formidable = require('formidable')
-
 const bcrypt = require('bcrypt') // Password incription -> For t his to work install npm install bcrypt inside the api container
 const saltRounds = 10
 
@@ -32,6 +30,9 @@ app.use(
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('seeker/files'));
+app.use(fileUpload())
+
 
 // Parsing the incoming data
 app.use(express.json())
@@ -129,42 +130,64 @@ app.post("/login", (req, res) => {
   })
 })
 
+
 app.post("/uploadfile", (req, res) => {
-  const setUserID = req.body.userID
-  const setFileName = req.body.fileName
+  const setUserID = req.session.user[0].USER_ID
 
   // Gets current date
-  var setFileCreation = new Date()
-  var dd = String(setFileCreation.getDate()).padStart(2, '0')
-  var mm = String(setFileCreation.getMonth() + 1).padStart(2, '0')
-  var yyyy = setFileCreation.getFullYear()
+  let setFileCreation = new Date()
+  let dd = String(setFileCreation.getDate()).padStart(2, '0')
+  let mm = String(setFileCreation.getMonth() + 1).padStart(2, '0')
+  let yyyy = setFileCreation.getFullYear()
   setFileCreation = yyyy + '-' + mm + '-' + dd
 
   // Creates a folder if it does not already exist, if it does exist, skip
   fs.mkdir(process.cwd() + '/seeker/files', { recursive : true }, (e) => {
     if (e) {
+      res.status(417).send('Error! The server could not create the file')
       console.error('Something has gone wrong: ', e)
     } else {
       console.log('Folder created sucessfully.')
     }
   })
 
-  // Recieves the file from the frontend
-  const fileInput = new formidable.IncomingForm()
-  fileInput.parse(req.body.file, function (err, fields, files) {
-    var tempPath = files.filetoupload.filepath
-    var storePath = "/seeker/files" + files.filetoupload.originalFilename
-    fs.rename(tempPath, storePath, function (err){
-      if (err) throw (err)
-      res.write('File Uploaded')
-      res.end()
-    })
+  // Defines the file based on the post input
+  const setFile = req.files.file
+  
+  //Splits the file name by extension, then adds a random number to the name to prevent file conflicts
+  let editFileName = setFile.name
+  let editFile = editFileName.split(".")
+  editFile[0] += '-' + (Math.round((Math.random()*(9999-1)+1))).toString()
+  editFileName = editFile.join('.')
+
+  //Generates a file based on the upload
+  setFile.mv(`${__dirname}/seeker/files/${editFileName}`, function (err) {
+    if (err) {
+      res.status(417).send('Error! The server could not write the file to the local store')
+      console.error(err)
+    }
   })
 
+  // Grabs the name of the file for the DB query
+  const setFileName = setFile.name
+  console.log(setFileName)
 
+  // Grabs the path of the file for the DB query
+  const setFilePath = `/${editFileName}`
+  console.log(setFilePath)
 
+  // Inserts the ID, fileName, date of creation and file path to the database
   db.query('INSERT INTO FILE (USER_ID, FILE_NAME, FILE_CREATION, FILE_PATH) VALUES (?, ?, ?, ?)', 
-  [setUserID, setFileName, setFileCreation, setFilePath], (err, result) => { console.log(result) })
+  [setUserID, setFileName, setFileCreation, setFilePath], (err, result) => {
+    if(err){
+      res.status(417).send('Error! File could not be uploded to the database')
+      console.error(err)
+    }
+    else{
+      res.status(200).send('File called ' + setFileName + ' sucessfully added to the database')
+      console.log(result)
+    }
+  })
 })
 
 // Starts the listener so we can communicate with the other services
