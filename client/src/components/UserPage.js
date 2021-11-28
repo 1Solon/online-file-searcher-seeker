@@ -22,6 +22,27 @@ export default function UserPage(){
         });
     }, []);
 
+    const removeSession = ()  => {
+        // alert("Are you sure?")
+        window.confirm("Press a button!")
+        // if
+            // console.log('Thing was saved to the database.')
+        
+        // else{
+        //     // Do nothing!
+        //     console.log('Thing was not saved to the database.');
+        // }
+        
+        // confirm('Are you sure you want to save this thing into the database?')) {
+        //     // Save it!
+        //     console.log('Thing was saved to the database.');
+        //   } else {
+        //     // Do nothing!
+        //     console.log('Thing was not saved to the database.');
+        //   }
+        // axios.get('/api/delete-session', {})
+    }
+
     return(
         <div className="top">
             {/* TopBar */}
@@ -54,7 +75,7 @@ export default function UserPage(){
                                             {localStorage.getItem('username')}
                                         </div>
                                     </div>
-                                    <hr />
+                                    <hr/>
 
                                     <div className="row">
                                         <div className="col-md-3">
@@ -77,13 +98,18 @@ export default function UserPage(){
                                             ***************
                                         </div>
                                     </div>
-                                    <hr/>
                                     
+                                    <div>
+                                        <Button className="deleteUser" onClick={(e) => {removeSession()}}>Delete User</Button>
+                                    </div>
+                                    <hr/>
+
                                     <div id="backgroundPopup"></div>
+                                    
                                     <Row className="FormBtn">
                                         <FormPopup/>
                                     </Row>
-                                </div>   
+                                </div>         
                             </div>
                         </div>
                     </div>

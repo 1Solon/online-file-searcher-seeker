@@ -83,6 +83,21 @@
     left: .9em;
 }
 
+.body .deleteUser{
+    position: relative;
+    top: 7em;
+    left: 0.2em;
+    width: 8.5em;
+    z-index: 1;
+    background-color:rgb(192, 46, 46);
+    border-color: rgb(192, 46, 46);
+}
+
+.body Button:hover {
+    background-color: #001e3c;
+    border: 0.1em solid #23a6d5;
+}
+
 @media only screen and (max-width: 768px){
     .body h6, .col-md-9{
         right:4em;
