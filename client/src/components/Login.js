@@ -30,17 +30,17 @@ export default function Login(){
           });
       };
 
-      useEffect(() => {
+    useEffect(() => {
         axios.get('api/session').then((response) => {
-          let isSession = response.data.isSession
-          if(isSession) {
-              nav('/homepage')
-          }
-          else{
-              nav('/login')
-          }
+            let isSession = response.data.isSession
+            if(isSession) {
+                nav('/homepage')
+            }
+            else{
+                nav('/login')
+            }
         });
-      }, []);
+    }, []);
 
     return(
         <section id="entry-page">
@@ -63,7 +63,7 @@ export default function Login(){
                         </li>
                 </ul>
                 </fieldset>
-                <button type="button" onClick={login} >Login</button>
+                <button type="button" onClick={login}>Login</button>
                 <button type="button" onClick={() => sendRegister()}>Create an Account</button>
             </form>
         </section>   

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './styles/TopBar.css'
 import image from './images/user1.jpeg'
-import {Row, Col } from 'react-bootstrap'
+import {Col} from 'react-bootstrap'
 
 export class TopBar extends Component {
   constructor(props) {
@@ -14,8 +14,12 @@ export class TopBar extends Component {
             <Col className="leftTopbar"></Col >
             <Col className="rightTopbar">
                 <div className="vl"></div>
-                <img id="circularUser"src={image} alt="user1"/>
-                <p>userName</p>
+                <a id="userLink" href="http://localhost:3000/userpage">
+                  <img id="circularUser"src={image} alt="user1"/>
+                </a>
+                <a id="userLink2" href="http://localhost:3000/userpage">
+                  <p id="userName">userName</p>
+                </a>
             </Col>
         </div>
         )

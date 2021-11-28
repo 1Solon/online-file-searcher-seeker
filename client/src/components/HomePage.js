@@ -7,18 +7,25 @@ import { SideBar } from "./SideBar";
 import { Footer } from "./Footer";
 import { useNavigate } from "react-router-dom";
 
-axios.defaults.withCredentials = true;
 
 export default function HomePage() {
-  const [selectedFile, onFileChange] = useState("");
+  const [selectedFile, onFileChange] = useState("")
+  
+  const nav = useNavigate()
+  
+  axios.defaults.withCredentials = true;
 
-  const nav = useNavigate();
-
-  useEffect(() => {
-    axios.get("api/session").then((response) => {
-      let isSession = response.data.isSession;
-      if (!isSession) {
-        nav("/login");
+  useEffect(() => {  
+    axios.get('api/session').then((response) => {
+      let isSession = response.data.isSession
+      localStorage.setItem('id', response.data.id)
+      localStorage.setItem('username', response.data.name);
+      localStorage.setItem('email', response.data.email);
+      if(!isSession) {
+          nav('/login')
+      }
+      else{
+        nav('/homepage')
       }
     });
   }, []);
