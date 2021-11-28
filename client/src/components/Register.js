@@ -32,12 +32,13 @@ export default function Register(){
                 username: usernameReg,
                 email: emailReg,
                 password: passwordReg,
-            }).then((respones) => {
-                if(respones){
+            }).then((response) => {
+                console.log(response.data.userCreated)
+                if(response.data.userCreated){
                     sendLogin()
                 }
                 else{
-                    console.log("Error!")
+                    alert('ERROR. User or email already exists')
                 }
             })
         }
