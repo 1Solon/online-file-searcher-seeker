@@ -22,11 +22,6 @@ export default function UserPage(){
         });
     }, []);
 
-    axios.get('api/session').then((response) => {
-        localStorage.setItem('username', response.data.name);
-        localStorage.setItem('email', response.data.email);
-    })
-
     return(
         <div className="top">
             {/* TopBar */}

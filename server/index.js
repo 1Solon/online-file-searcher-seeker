@@ -128,6 +128,36 @@ app.post("/login", (req, res) => {
   })
 })
 
+app.post('/update-detials', (req, res) => {
+  const newPassword = req.body.updatePassword
+  const userId = req.body.userId
+  let userUpdated = false
+
+  console.log(newPassword)
+  if(newPassword == ''){
+    res.send(userUpdated)
+  }
+  else{
+    bcrypt.hash(newPassword, saltRounds, (err, hash) => {
+      if(err){
+        console.log(err)
+        res.send({err: err})
+      }
+      db.query("UPDATE USERS SET USER_PASSWORD = ? WHERE USER_ID = ?", [hash, userId], (err, result) => {
+        if(err){
+          console.log(err)
+          res.send({ err: err })
+        }
+        else{
+          userUpdated = true
+          console.log(userUpdated)
+          res.send(userUpdated)
+        }
+      })
+    })
+  }
+})
+
 app.post("/uploadfile", (req, res) => {
   const setUserID = req.body.userID
   const setFileName = req.body.fileName
