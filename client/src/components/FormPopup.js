@@ -7,18 +7,21 @@ import axios from "axios";
 export function FormPopup(){
     const [updateUsername, setUsername] = useState("");
     const [updatePassword, setPassword] = useState("");
-    
+
     axios.defaults.withCredentials = true;
     
     const updateDetails = () => {
-        console.log('NewPassword: ', updatePassword)
+        if(updateUsername == ''){
+            setUsername(localStorage.getItem('username'))
+        }
+        console.log('Username: ', updateUsername)   
         axios.post('/api/update-detials', {
             userId: localStorage.getItem('id'),
+            updateUsername: updateUsername,
             updatePassword: updatePassword
         }).then((response) =>{
-            console.log(response);
             if(!response.data){
-                alert("ERROR. Make sure a new password is entered")
+                alert("ERROR. Make sure a new user and/or password is entered")
             }
             else{
                 alert("Your password has been updated successfully")
@@ -35,14 +38,14 @@ export function FormPopup(){
                     <h1>Change Details</h1>
                     <Col>
                         <label htmlFor="user"><b>Username</b></label>
-                        <input type="text" placeholder={localStorage.getItem('username')} id="updateUsername" disabled></input>
+                        <input type="text"  defaultValue={localStorage.getItem('username')} id="updateUsername" onChange={(e) => {setUsername(e.target.value);}}></input>
                     </Col>
                 </Row>
                 
                 <Row className="row1">
                     <Col>
                         <label htmlFor="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" required='true ' id="updatePassword" onChange={(e) => {setPassword(e.target.value);}}></input>
+                        <input type="password" placeholder="Enter new password" id="updatePassword" onChange={(e) => {setPassword(e.target.value);}}></input>
                     </Col>
                 </Row>
                         

@@ -2,6 +2,7 @@ import './styles/Login.css';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import validator from 'validator'
 
 export default function Register(){
     const [usernameReg, setUsernameReg] = useState("")
@@ -16,19 +17,34 @@ export default function Register(){
         nav('/login')
     }
 
+    const validateEmail = () => {
+        if(validator.isEmail(emailReg)){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
     const register = () => {
-        axios.post('/api/register', {
-            username: usernameReg,
-            email: emailReg,
-            password: passwordReg,
-        }).then((respones) => {
-            if(respones){
-                sendLogin()
-            }
-            else{
-                console.log("Error!")
-            }
-        })
+        if(validateEmail()){
+            axios.post('/api/register', {
+                username: usernameReg,
+                email: emailReg,
+                password: passwordReg,
+            }).then((response) => {
+                console.log(response.data.userCreated)
+                if(response.data.userCreated){
+                    sendLogin()
+                }
+                else{
+                    alert('ERROR. User or email already exists')
+                }
+            })
+        }
+        else{
+            alert('ERROR. Invalid email')
+        }
     }
 
     return (
