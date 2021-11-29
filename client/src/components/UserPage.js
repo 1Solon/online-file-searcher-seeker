@@ -26,43 +26,49 @@ export default function UserPage(){
         axios.get('/api/delete-session', {})
       }
 
-     // delete files from front end
+    // delete files from front end
     const deleteAllFiles = () => {
         axios.get("api/get-files").then((response) => {
-            console.log(response.data)
+            // work around to delete files from server
+            console.log("")
+
+            // delete session without files
             if(response.data.length === 0) {
                 removeSession()
             }
+            // delete session and files from the user
             else {
                 response.data.map((val, key) => { 
-                    removeSession()
-                    axios.post("api/delete-file", {fileID : val.FILE_ID})
+                    axios.get('/api/delete-session', {}).then((response) => {
+                        console.log("")
+                    })
+                    axios.post("api/delete-file", {fileID : val.FILE_ID}).then((response) => {
+                        // work around to delete files from server
+                        console.log("")
+                    })
                 })
-             }
+            }
+            nav('/login')
         })    
     }
 
     const deleteUser = ()  => {
         if(window.confirm("Are you sure you want to delete your account?")){
-            // 1.5 delete files from DB in backend 
             deleteAllFiles() 
+        
+            // delete user
+            axios.post('/api/detele-user', {userid: localStorage.getItem('id'),}).then((response) => {
+                console.log("")
+            }) 
             
-            // 2nd delete user
-
-            // 4th delete session
-            
-            // 3rd delete local storage
+            // delete local storage
             localStorage.removeItem('id');
             localStorage.removeItem('username');
             localStorage.removeItem('email');
-            
-            nav('/login')
-
         }
         else{
             console.log("false")
         }
-        
     }
 
     return(
