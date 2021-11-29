@@ -150,7 +150,7 @@ app.post('/update-detials', (req, res) => {
   let userUpdated = false
   let passCheck = false
 
-  if(newUsername == ''){
+  if(newUsername === ''){
     db.query('SELECT USER_NAME FROM USERS WHERE USER_ID = ?', [userId], (err, result) => {
       if(err){
         console.log(err)
@@ -293,7 +293,8 @@ app.post("/delete-file", (req, res) => {
 
 app.post("/detele-user", (req, res) => {
   const userID = req.body.userid
-    
+  
+  // Deletes user files from the database
   db.query("DELETE FROM FILE WHERE USER_ID = ?", [userID], (err, result) => {
     if (err){
       console.log(err)
@@ -304,6 +305,7 @@ app.post("/detele-user", (req, res) => {
 
   })
 
+  // Deletes user from the database
   db.query("DELETE FROM USERS WHERE USER_ID = ?", [userID], (err, res) => {
     if (err){
       console.log(err)

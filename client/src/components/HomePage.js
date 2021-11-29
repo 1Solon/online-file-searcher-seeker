@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Row } from "react-bootstrap";
 import { TopBar } from "./TopBar";
 import { SideBar } from "./SideBar";
-import { Footer } from "./Footer";
+// import { Footer } from "./Footer";
 import { CardDisplay } from "./Card";
 import { useNavigate } from "react-router-dom";
 
@@ -81,10 +81,10 @@ export default function HomePage() {
         <SideBar />
       </div>
 
-      {/* Footer */}
-      <div className="FooterDiv">
+      {/* Footer Not being used*/}
+      {/* <div className="FooterDiv">
         <Footer />
-        </div>
+      </div> */}
     </div>
   );
 }

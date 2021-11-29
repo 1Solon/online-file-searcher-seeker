@@ -26,7 +26,7 @@ export default function UserPage(){
         axios.get('/api/delete-session', {})
       }
 
-     // delete files from front end
+    // delete files from front end
     const deleteAllFiles = () => {
         axios.get("api/get-files").then((response) => {
             // work around to delete files from server
@@ -46,7 +46,6 @@ export default function UserPage(){
                         // work around to delete files from server
                         console.log("")
                     })
-
                 })
             }
             nav('/login')
@@ -70,7 +69,6 @@ export default function UserPage(){
         else{
             console.log("false")
         }
-        
     }
 
     return(
