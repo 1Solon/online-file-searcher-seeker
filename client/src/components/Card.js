@@ -24,7 +24,6 @@ export class CardDisplay extends Component {
       url: `api/${filePath}`,
       method: 'GET',
       responseType: 'blob',
-      param: {path : filePath},
     }).then((response) => {
       const url = window.URL.createObjectURL(new Blob([response.data]))
       const link = document.createElement('a')
