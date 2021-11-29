@@ -30,7 +30,7 @@ export default function UserPage(){
     const deleteAllFiles = () => {
         axios.get("api/get-files").then((response) => {
             console.log(response.data)
-            if(response.data.length == 0) {
+            if(response.data.length === 0) {
                 removeSession()
             }
             else {

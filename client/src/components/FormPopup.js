@@ -13,10 +13,6 @@ export function FormPopup(){
     axios.defaults.withCredentials = true;
     
     const updateDetails = () => {
-        if(updateUsername == ''){
-            setUsername(localStorage.getItem('username'))
-        }
-        console.log('Username: ', updateUsername)   
         axios.post('/api/update-detials', {
             userId: localStorage.getItem('id'),
             updateUsername: updateUsername,

@@ -29,6 +29,7 @@ export class CardDisplay extends Component {
       const link = document.createElement('a')
       link.href = url
       link.setAttribute('download', fileName)
+      link.style.display = "none";
       document.body.appendChild(link)
       link.click()
     })
