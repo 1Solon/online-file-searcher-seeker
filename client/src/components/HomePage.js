@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button, Row } from "react-bootstrap";
 import { TopBar } from "./TopBar";
 import { SideBar } from "./SideBar";
-import { Footer } from "./Footer";
+// import { Footer } from "./Footer";
 import { CardDisplay } from "./Card";
 import { useNavigate } from "react-router-dom";
 
@@ -47,8 +47,14 @@ export default function HomePage() {
       </div>
 
       <Row className="file">
-        <input type="text" placeholder="Search"></input>
-        <i className="bx bx-search"></i>
+        <input 
+        type="text" 
+        placeholder="Press 'Enter' to search, leave blank and hit 'Enter' to Reset"
+        onKeyDown = {(e) => {if (e.key === 'Enter') {
+          localStorage.setItem('searchTerm', e.target.value)
+          window.location.reload()
+        }}} 
+        />
 
         <Row>
           <div id="col1" className="col-md-6">
@@ -72,7 +78,7 @@ export default function HomePage() {
 
         {/* Files display */}
         <div className="cardDisplayDiv">
-          <CardDisplay/>
+          <CardDisplay />
         </div>
       </Row>
 
@@ -81,10 +87,10 @@ export default function HomePage() {
         <SideBar />
       </div>
 
-      {/* Footer */}
-      <div className="FooterDiv">
+      {/* Footer Not being used*/}
+      {/* <div className="FooterDiv">
         <Footer />
-        </div>
+      </div> */}
     </div>
   );
 }
