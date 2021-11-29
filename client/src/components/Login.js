@@ -26,6 +26,7 @@ export default function Login(){
             }
             else{
                 nav('/homepage')
+                window.location.reload()
             }
           });
       };
