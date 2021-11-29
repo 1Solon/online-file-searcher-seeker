@@ -99,13 +99,11 @@ app.post("/register", (req, res) => {
   // Password encryption
   bcrypt.hash(setPassword, saltRounds, (err, hash) => {
     if(err){
-      console.log(err)
       res.send({err: err})
     }
     db.query("INSERT INTO USERS (USER_NAME, USER_EMAIL, USER_PASSWORD) VALUES (?, ?, ?)", [setUserName, setEmail, hash], (err, result) => {
       if(err){
-        console.log(err)
-        res.send({ err: err })
+        res.send({ userCreated: false })
       }
       else{
         console.log(result)
@@ -147,12 +145,13 @@ app.post("/login", (req, res) => {
 })
 
 app.post('/update-detials', (req, res) => {
-  const newPassword = req.body.updatePassword
   const userId = req.body.userId
+  const username = req.body.updateUsername
+  const newPassword = req.body.updatePassword
   let userUpdated = false
 
-  console.log(newPassword)
-  if(newPassword == ''){
+  console.log(username)
+  if(newPassword == '' || username == ''){
     res.send(userUpdated)
   }
   else{
@@ -161,7 +160,8 @@ app.post('/update-detials', (req, res) => {
         console.log(err)
         res.send({err: err})
       }
-      db.query("UPDATE USERS SET USER_PASSWORD = ? WHERE USER_ID = ?", [hash, userId], (err, result) => {
+      db.query("UPDATE USERS SET USER_NAME = ?, USER_PASSWORD = ? WHERE USER_ID = ?", [username, hash, userId], (err, result) => {
+        console.log(err)
         if(err){
           console.log(err)
           res.send({ err: err })
