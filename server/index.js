@@ -275,8 +275,13 @@ app.post("/delete-file", (req, res) => {
         console.error(err)
       } else {
         // Gets the path, then deletes the target file
-        const pathToDelete = result[0].FILE_PATH
-        fs.unlinkSync(`${__dirname}/seeker/files/${pathToDelete}`)
+        
+        try {
+          const pathToDelete = result[0].FILE_PATH
+          fs.unlinkSync(`${__dirname}/seeker/files/${pathToDelete}`)
+        } catch (error) {
+          console.error("File failed to delete")
+        }
 
         //Delets the entry from the database
         db.query('DELETE FROM FILE WHERE FILE_ID = ?;', [fileToDelete], (err) => {
@@ -291,19 +296,8 @@ app.post("/delete-file", (req, res) => {
   })
 })
 
-app.post("/detele-user", (req, res) => {
+app.post("/delete-user", (req, res) => {
   const userID = req.body.userid
-  
-  // Deletes user files from the database
-  db.query("DELETE FROM FILE WHERE USER_ID = ?", [userID], (err, result) => {
-    if (err){
-      console.log(err)
-    }
-    else{
-      console.log("True")
-    }
-
-  })
 
   // Deletes user from the database
   db.query("DELETE FROM USERS WHERE USER_ID = ?", [userID], (err, res) => {
@@ -311,10 +305,10 @@ app.post("/detele-user", (req, res) => {
       console.log(err)
     }
     else{
-      console.log("True")
+      console.log("Sucessfully deleted user")
     }
   })
-
+  res.status(200).send('User Deleted Sucessfully')
 })
 
 // Starts the listener so we can communicate with the other services
