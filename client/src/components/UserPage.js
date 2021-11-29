@@ -22,21 +22,40 @@ export default function UserPage(){
         });
     }, []);
 
-    const removeSession = ()  => {
+    const removeSession = () => {
+        axios.get('/api/delete-session', {})
+      }
+
+     // delete files from front end
+    const deleteAllFiles = () => {
+        axios.get("api/get-files").then((response) => {
+            console.log(response.data)
+            if(response.data.length == 0) {
+                removeSession()
+            }
+            else {
+                response.data.map((val, key) => { 
+                    removeSession()
+                    axios.post("api/delete-file", {fileID : val.FILE_ID})
+                })
+             }
+        })    
+    }
+
+    const deleteUser = ()  => {
         if(window.confirm("Are you sure you want to delete your account?")){
-            console.log("true")
-
-            // 1st delete files
-
+            // 1.5 delete files from DB in backend 
+            deleteAllFiles() 
+            
             // 2nd delete user
 
+            // 4th delete session
+            
             // 3rd delete local storage
             localStorage.removeItem('id');
             localStorage.removeItem('username');
             localStorage.removeItem('email');
-
-            // 4th delete session
-            axios.get('/api/delete-session', {})
+            
             nav('/login')
 
         }
@@ -101,11 +120,11 @@ export default function UserPage(){
                                             ***************
                                         </div>
                                     </div>
+                                    <hr/>
                                     
                                     <div>
-                                        <Button className="deleteUser" onClick={(e) => {removeSession()}}>Delete User</Button>
+                                        <Button className="deleteUser" onClick={(e) => {deleteUser()}}>Delete User</Button>
                                     </div>
-                                    <hr/>
 
                                     <div id="backgroundPopup"></div>
                                     

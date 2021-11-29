@@ -69,11 +69,12 @@ export default function HomePage() {
             </Button>
           </div>
         </Row>
-      </Row>
 
-      <div className="cardDisplayDiv">
-        <CardDisplay />
-      </div>
+        {/* Files display */}
+        <div className="cardDisplayDiv">
+          <CardDisplay/>
+        </div>
+      </Row>
 
       {/* Sidebar */}
       <div className="sidebarDiv">
@@ -81,7 +82,9 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <div className="FooterDiv">{/* <Footer /> */}</div>
+      <div className="FooterDiv">
+        <Footer />
+        </div>
     </div>
   );
 }
