@@ -74,6 +74,22 @@ app.get("/delete-session", (req, res) => {
   req.session.destroy()
 })
 
+//Handles retrieving files from the database
+app.get("/get-files", (req, res) => {
+  const getUserID = req.session.user[0].USER_ID
+  
+  db.query('SELECT * FROM FILE WHERE USER_ID = ?;', [getUserID], (err, result, fields) => {
+    if(err){
+      res.status(417).send('Error! The server could not complete get-files request')
+      console.error(err)
+    }
+    else{
+      console.log(result)
+      res.send(result)
+    }
+  })
+})
+
 // Handles adding a user to the database to the DB -> Registering user + encrypting password
 app.post("/register", (req, res) => {
   const setUserName = req.body.username
@@ -215,6 +231,32 @@ app.post("/uploadfile", (req, res) => {
     else{
       res.status(200).send('File called ' + setFileName + ' sucessfully added to the database')
       console.log(result)
+    }
+  })
+})
+
+app.post("/delete-file", (req, res) => {
+  const fileToDelete = req.body.fileID
+
+  // Grabs the file based on the provided ID
+    db.query('SELECT * FROM FILE WHERE FILE_ID = ?;', [fileToDelete], (err, result) => {
+      if(err){
+        res.status(417).send('Error! The server could not complete delete-files request')
+        console.error(err)
+      } else {
+        // Gets the path, then deletes the target file
+        const pathToDelete = result[0].FILE_PATH
+        fs.unlinkSync(`${__dirname}/seeker/files/${pathToDelete}`)
+
+        //Delets the entry from the database
+        db.query('DELETE FROM FILE WHERE FILE_ID = ?;', [fileToDelete], (err) => {
+          if(err){
+            res.status(417).send('Error! The server could not complete delete-files request')
+            console.error(err)
+          } else {
+            res.status(200).send('File successfully deleted from the database!')
+          }
+      })
     }
   })
 })
