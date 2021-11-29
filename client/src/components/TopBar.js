@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './styles/TopBar.css'
-import image from './images/user1.jpeg'
+import image from './images/Logo.png'
 import {Col} from 'react-bootstrap'
 
 export class TopBar extends Component {

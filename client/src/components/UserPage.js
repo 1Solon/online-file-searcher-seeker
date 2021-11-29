@@ -1,12 +1,12 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import './styles/UserPage.css'
-import image from './images/user1.jpeg'
 import {SideBar} from './SideBar'
 import {FormPopup} from './FormPopup'
 import { Button,Row} from 'react-bootstrap'
 import {TopBar} from './TopBar'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import image from './images/Logo.png'
 
 axios.defaults.withCredentials = true;
 
@@ -24,7 +24,7 @@ export default function UserPage(){
 
     const removeSession = () => {
         axios.get('/api/delete-session', {})
-      }
+    }
 
     // delete files from front end
     const deleteAllFiles = () => {
@@ -81,9 +81,8 @@ export default function UserPage(){
                         <h1>Profile</h1>
                         <div className="col-md-5 no-gutters d-flex justify-content-center align-items-center">
                             <div className='ImageDiv'>
-                                <img id="userImage1"src={image} alt="user1"/>
+                                <img id="userImage1" src={image} alt="user1"/>
                                 <br></br><br></br>
-                                <Button>Change Image</Button>
                             </div>
                         </div>
 
