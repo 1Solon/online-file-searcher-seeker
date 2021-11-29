@@ -84,3 +84,9 @@ html,body{
 .file #col1{
   transform: translate(-3em, 2em);
 }
+
+.cardDisplayDiv{
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
