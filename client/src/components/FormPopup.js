@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import './styles/FormPopup.css'
 import { Button, Row, Col } from 'react-bootstrap'
 import axios from "axios";
-
+import { useNavigate } from 'react-router-dom'
 
 export function FormPopup(){
     const [updateUsername, setUsername] = useState("");
     const [updatePassword, setPassword] = useState("");
+
+    const nav = useNavigate()
 
     axios.defaults.withCredentials = true;
     
@@ -24,7 +26,9 @@ export function FormPopup(){
                 alert("ERROR. Make sure a new user and/or password is entered")
             }
             else{
-                alert("Your password has been updated successfully")
+                alert("Your password/username has been updated successfully")
+                axios.get('/api/delete-session', {})
+                nav('/login')
             }
         })
     }
