@@ -22,6 +22,30 @@ export default function UserPage(){
         });
     }, []);
 
+    const removeSession = ()  => {
+        if(window.confirm("Are you sure you want to delete your account?")){
+            console.log("true")
+
+            // 1st delete files
+
+            // 2nd delete user
+
+            // 3rd delete local storage
+            localStorage.removeItem('id');
+            localStorage.removeItem('username');
+            localStorage.removeItem('email');
+
+            // 4th delete session
+            axios.get('/api/delete-session', {})
+            nav('/login')
+
+        }
+        else{
+            console.log("false")
+        }
+        
+    }
+
     return(
         <div className="top">
             {/* TopBar */}
@@ -54,7 +78,7 @@ export default function UserPage(){
                                             {localStorage.getItem('username')}
                                         </div>
                                     </div>
-                                    <hr />
+                                    <hr/>
 
                                     <div className="row">
                                         <div className="col-md-3">
@@ -77,13 +101,18 @@ export default function UserPage(){
                                             ***************
                                         </div>
                                     </div>
-                                    <hr/>
                                     
+                                    <div>
+                                        <Button className="deleteUser" onClick={(e) => {removeSession()}}>Delete User</Button>
+                                    </div>
+                                    <hr/>
+
                                     <div id="backgroundPopup"></div>
+                                    
                                     <Row className="FormBtn">
                                         <FormPopup/>
                                     </Row>
-                                </div>   
+                                </div>         
                             </div>
                         </div>
                     </div>

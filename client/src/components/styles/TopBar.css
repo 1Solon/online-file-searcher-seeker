@@ -1,5 +1,9 @@
+/* .TopBar{
+    height:
+} */
+
 .rightTopbar, .leftTopbar{
-    height: 3em;
+    height: 2em;
 }
 
 .rightTopbar{
@@ -10,7 +14,7 @@
 .TopBar p{
     color: black;
     position: relative;
-    bottom: 8.5em;
+    bottom: 7.8em;
     left: 75%;
 }
 
@@ -27,9 +31,9 @@
 
 #circularUser{
     position: relative;
-    bottom: 5.5em;
-    left: 89%;
-    height: 5em;
+    bottom: 4.8em;
+    left: 50%;
+    height: 3.5em;
     border-radius: 50%;
 }
 

@@ -4,6 +4,7 @@ let background = document.querySelector("#backgroundPopup")
 let popup = document.querySelector("#popup")
 let formOpen = document.querySelector(".Btn2")
 let formClose = document.querySelector(".closeBtn")
+let deleteBtn = document.querySelector(".deleteUser")
 
 if(document.location.pathname === "/userpage"){
     formOpen.onclick = function(){
@@ -16,10 +17,12 @@ if(document.location.pathname === "/userpage"){
         if (toggle === true){
             popup.style.display = "block"
             background.style.display = 'block'
+            deleteBtn.style.zIndex = '-1'
         }
         else if (toggle === false){
             popup.style.display = "none"
             background.style.display = 'none'
+            deleteBtn.style.zIndex = '1'
         }
     }
 
@@ -32,5 +35,6 @@ if(document.location.pathname === "/userpage"){
         var toggle = popup.classList.toggle("active")
         popup.style.display = "none"
         background.style.display = 'none'
+        deleteBtn.style.zIndex = '1'
     }
 }

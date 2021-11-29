@@ -1,3 +1,8 @@
+.form .Btn2{
+    position: relative;
+    bottom: 0.5em;
+}
+
 #popup {
     position:fixed;
     bottom: 12.5em;
@@ -74,5 +79,4 @@
         position: relative;
         left: -5.5em;
     }
-    
 }
