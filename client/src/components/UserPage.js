@@ -22,33 +22,19 @@ export default function UserPage(){
         });
     }, []);
 
-    const removeSession = () => {
-        axios.get('/api/delete-session', {})
-    }
-
     // delete files from front end
     const deleteAllFiles = () => {
         axios.get("api/get-files").then((response) => {
-            // work around to delete files from server
-            console.log("")
 
-            // delete session without files
-            if(response.data.length === 0) {
-                removeSession()
+            if (response.status.lenght === 0){
             }
-            // delete session and files from the user
-            else {
-                response.data.map((val, key) => { 
-                    axios.get('/api/delete-session', {}).then((response) => {
-                        console.log("")
-                    })
+            else{
+                response.data.map((val) => {
                     axios.post("api/delete-file", {fileID : val.FILE_ID}).then((response) => {
-                        // work around to delete files from server
-                        console.log("")
+                        console.log("delete file")
                     })
                 })
             }
-            nav('/login')
         })    
     }
 
@@ -57,14 +43,19 @@ export default function UserPage(){
             deleteAllFiles() 
         
             // delete user
-            axios.post('/api/detele-user', {userid: localStorage.getItem('id'),}).then((response) => {
-                console.log("")
-            }) 
+            axios.post('/api/delete-user', {userid: localStorage.getItem('id')}).then(console.log("Sucessfully deleted user"))
             
             // delete local storage
-            localStorage.removeItem('id');
-            localStorage.removeItem('username');
-            localStorage.removeItem('email');
+            localStorage.removeItem('id')
+            localStorage.removeItem('username')
+            localStorage.removeItem('email')
+            localStorage.setItem('searchTerm', "")
+
+            // Deletes session
+            axios.get('/api/delete-session').then(console.log("Sucessfully deleted session"))
+
+            // Reloads page
+            window.location.reload()
         }
         else{
             console.log("false")
