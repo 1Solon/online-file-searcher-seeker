@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './styles/Footer.css'
 import axios from "axios";
-import {Card, Button} from 'react-bootstrap'
+import {Card, Button, Row, Col} from 'react-bootstrap'
 
 export class CardDisplay extends Component {
   constructor(props) {
@@ -22,14 +22,34 @@ export class CardDisplay extends Component {
   render(){
       let card = this.state.getData.map((val, key) => {
         return (
-            <React.Fragment>
-            <Card style={{ width: '18rem' }} className='m-2'>
+        <React.Fragment>
+            <Card className='m-2'>
                 <Card.Body>
                     <Card.Text>
-                        {val.FILE_NAME}
+                      <Row className='row g-4'>
+                        <Col className='col-md-8'>
+                          {val.FILE_NAME}
+                        </Col>
+
+                        <Col className='download col-md-2'>
+                          <Button className='downloadBtn'onClick={() => {}}>Download</Button>
+                        </Col>
+
+                        <Col className='delete col-md-2'>
+                          <Button className='deleteBtn' onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>  
+                        </Col>
+                      </Row>
+
                     </Card.Text>
-                    <Button onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>
-                    <Button onClick={() => {}}>Download</Button>
+                    <Row>
+                      {/* <Col>
+                        <Button onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>
+                      </Col>
+
+                      <Col>
+                        <Button onClick={() => {}}>Download</Button>
+                      </Col> */}
+                    </Row>
                 </Card.Body>
             </Card>
         </React.Fragment>

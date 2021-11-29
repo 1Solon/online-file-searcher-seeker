@@ -85,8 +85,82 @@ html,body{
   transform: translate(-3em, 2em);
 }
 
-.cardDisplayDiv{
-  margin: auto;
-  width: 50%;
-  padding: 10px;
+.file .cardDisplayDiv{
+  width: 100%;
 }
+
+.file .m-2{
+  position: relative;
+  left: 2.2em;
+  width: 90%;
+  height: 5em;
+}
+
+.file .download{
+  position: relative;
+  top: 0.3em;
+  left: 5em;
+}
+
+.file .deleteBtn{
+  background-color: rgb(192, 46, 46);
+  border-color: rgb(192, 46, 46);
+}
+
+.file .delete{
+  position: relative;
+  top: 0.3em;
+  right: 5em;
+}
+
+.file Button:hover{
+    background-color: #001e3c;
+    border: 0.1em solid #23a6d5;
+}
+
+@media only screen and (min-width: 768px){
+  .file .download{
+    left: -3.5em;
+  }
+
+  .file .delete{
+    right: 3em;
+  }
+}
+
+@media only screen and (min-width: 1100px){
+  .file .download{
+    left: -1em;
+  }
+
+  .file .delete{
+    right: 4em;
+  }
+}
+
+@media only screen and (min-width: 1400px){
+  .file .download{
+    left: 2em;
+  }
+
+  .file .delete{
+    right: 4em;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .file .download{
+    top: 1.7em;
+    left: 0em;
+  }
+
+  .file .delete{
+    top: 1.7em;
+    right: 2.5em;
+  }
+
+  .file .m-2{
+    height: 8em;
+  }
+}
+
