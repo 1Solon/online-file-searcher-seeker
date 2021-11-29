@@ -37,29 +37,31 @@ export class CardDisplay extends Component {
 
   render(){
       let card = this.state.getData.map((val, key) => {
-        return (
-        <React.Fragment>
-            <Card className='m-2'>
-                <Card.Body>
-                    <Card.Text>
-                      <Row className='row g-4'>
-                        <Col className='col-md-8'>
-                          {val.FILE_NAME}
-                        </Col>
-
-                        <Col className='download col-md-2'>
-                         <Button onClick={() => {this.downloadFile(val.FILE_PATH, val.FILE_NAME)}}>Download</Button>
-                        </Col>
-
-                        <Col className='delete col-md-2'>
-                          <Button className='deleteBtn' onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>  
-                        </Col>
-                      </Row>
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </React.Fragment>
-        )
+        if (val.FILE_NAME.includes(localStorage.getItem('searchTerm'))) {
+          return (
+            <React.Fragment>
+                <Card className='m-2'>
+                    <Card.Body>
+                        <Card.Text>
+                          <Row className='row g-4'>
+                            <Col className='col-md-8'>
+                              {val.FILE_NAME}
+                            </Col>
+    
+                            <Col className='download col-md-2'>
+                             <Button onClick={() => {this.downloadFile(val.FILE_PATH, val.FILE_NAME)}}>Download</Button>
+                            </Col>
+    
+                            <Col className='delete col-md-2'>
+                              <Button className='deleteBtn' onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>  
+                            </Col>
+                          </Row>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </React.Fragment>
+            ) 
+        }
       })
       return(card)
   }

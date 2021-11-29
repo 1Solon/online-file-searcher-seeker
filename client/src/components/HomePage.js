@@ -47,8 +47,14 @@ export default function HomePage() {
       </div>
 
       <Row className="file">
-        <input type="text" placeholder="Search"></input>
-        <i className="bx bx-search"></i>
+        <input 
+        type="text" 
+        placeholder="Press 'Enter' to search, leave blank and hit 'Enter' to Reset"
+        onKeyDown = {(e) => {if (e.key === 'Enter') {
+          localStorage.setItem('searchTerm', e.target.value)
+          window.location.reload()
+        }}} 
+        />
 
         <Row>
           <div id="col1" className="col-md-6">
@@ -72,7 +78,7 @@ export default function HomePage() {
 
         {/* Files display */}
         <div className="cardDisplayDiv">
-          <CardDisplay/>
+          <CardDisplay />
         </div>
       </Row>
 
