@@ -19,6 +19,21 @@ export class CardDisplay extends Component {
     })
   }
 
+  downloadFile(filePath, fileName){
+    axios({
+      url: `api/${filePath}`,
+      method: 'GET',
+      responseType: 'blob',
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', fileName)
+      document.body.appendChild(link)
+      link.click()
+    })
+  }
+
   render(){
       let card = this.state.getData.map((val, key) => {
         return (
@@ -32,24 +47,14 @@ export class CardDisplay extends Component {
                         </Col>
 
                         <Col className='download col-md-2'>
-                          <Button className='downloadBtn'onClick={() => {}}>Download</Button>
+                         <Button onClick={() => {this.downloadFile(val.FILE_PATH, val.FILE_NAME)}}>Download</Button>
                         </Col>
 
                         <Col className='delete col-md-2'>
                           <Button className='deleteBtn' onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>  
                         </Col>
                       </Row>
-
                     </Card.Text>
-                    <Row>
-                      {/* <Col>
-                        <Button onClick={() => {axios.post("api/delete-file", {fileID : val.FILE_ID }).then(window.location.reload())}}>Delete</Button>
-                      </Col>
-
-                      <Col>
-                        <Button onClick={() => {}}>Download</Button>
-                      </Col> */}
-                    </Row>
                 </Card.Body>
             </Card>
         </React.Fragment>
