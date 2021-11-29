@@ -125,7 +125,6 @@ app.post("/login", (req, res) => {
     }
     if(result.length > 0) {
       bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
-        console.log(response)
         if(response){
             req.session.user = result
             res.send(result);
@@ -146,32 +145,63 @@ app.post("/login", (req, res) => {
 
 app.post('/update-detials', (req, res) => {
   const userId = req.body.userId
-  const username = req.body.updateUsername
-  const newPassword = req.body.updatePassword
+  let newUsername = req.body.updateUsername
+  let newPassword = req.body.updatePassword
   let userUpdated = false
+  let passCheck = false
 
-  console.log(username)
-  if(newPassword == '' || username == ''){
-    res.send(userUpdated)
-  }
-  else{
-    bcrypt.hash(newPassword, saltRounds, (err, hash) => {
+  if(newUsername == ''){
+    db.query('SELECT USER_NAME FROM USERS WHERE USER_ID = ?', [userId], (err, result) => {
       if(err){
         console.log(err)
+        res.send(userUpdated)
+      }
+      else{       
+        newUsername = result[0].USER_NAME
+      }
+    })
+  }
+  if(newPassword == ''){
+    passCheck = true
+    db.query('SELECT USER_PASSWORD FROM USERS WHERE USER_ID = ?', [userId], (err, result) =>{
+      if(err){
+        console.log(err)
+        res.send(userUpdated)
+      }
+      else{
+        newPassword = result[0].USER_PASSWORD
+        console.log(newPassword)
+      }
+    })
+  }
+
+  if(!passCheck){
+    bcrypt.hash(newPassword, saltRounds, (err, hash) => {
+      if(err){
         res.send({err: err})
       }
-      db.query("UPDATE USERS SET USER_NAME = ?, USER_PASSWORD = ? WHERE USER_ID = ?", [username, hash, userId], (err, result) => {
-        console.log(err)
+      db.query("UPDATE USERS SET USER_NAME = ?, USER_PASSWORD = ? WHERE USER_ID = ?", [newUsername, hash, userId], (err, result) => {
         if(err){
-          console.log(err)
           res.send({ err: err })
         }
         else{
           userUpdated = true
-          console.log(userUpdated)
           res.send(userUpdated)
         }
       })
+    })
+  }
+  else{
+    db.query("UPDATE USERS SET USER_NAME = ? WHERE USER_ID = ?", [newUsername, userId], (err, result) => {
+      if(err){
+        console.log(err)
+        res.send({ err: err })
+      }
+      else{
+        console.log('Hello, ', newPassword)
+        userUpdated = true
+        res.send(userUpdated)
+      }
     })
   }
 })
