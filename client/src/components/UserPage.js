@@ -29,10 +29,11 @@ export default function UserPage(){
             if (response.status.lenght === 0){
             }
             else{
-                response.data.map((val) => {
+                response.data.map((val, key) => {
                     axios.post("api/delete-file", {fileID : val.FILE_ID}).then((response) => {
                         console.log("delete file")
                     })
+                    new Promise(resolve => setTimeout(resolve, 1000))
                 })
             }
         })    
