@@ -138,13 +138,23 @@ html,body{
   }
 }
 
-@media only screen and (min-width: 1400px){
+@media only screen and (min-width: 1440px){
   .file .download{
-    left: 2em;
+    left: 2.5em;
   }
 
   .file .delete{
     right: 4em;
+  }
+}
+
+@media only screen and (min-width: 1600px){
+  .file .download{
+    left: 3.5em;
+  }
+
+  .file .delete{
+    right: 5em;
   }
 }
 

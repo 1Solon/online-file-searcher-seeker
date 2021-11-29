@@ -291,5 +291,29 @@ app.post("/delete-file", (req, res) => {
   })
 })
 
+app.post("/detele-user", (req, res) => {
+  const userID = req.body.userid
+    
+  db.query("DELETE FROM FILE WHERE USER_ID = ?", [userID], (err, result) => {
+    if (err){
+      console.log(err)
+    }
+    else{
+      console.log("True")
+    }
+
+  })
+
+  db.query("DELETE FROM USERS WHERE USER_ID = ?", [userID], (err, res) => {
+    if (err){
+      console.log(err)
+    }
+    else{
+      console.log("True")
+    }
+  })
+
+})
+
 // Starts the listener so we can communicate with the other services
 app.listen('3001', () => { })
