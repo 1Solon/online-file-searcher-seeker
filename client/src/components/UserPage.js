@@ -61,6 +61,7 @@ export default function UserPage(){
     
                 // Reloads page
                 window.location.reload()
+                nav("/")
             }
         }
         else{

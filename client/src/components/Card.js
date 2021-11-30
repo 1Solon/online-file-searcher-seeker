@@ -60,6 +60,7 @@ export class CardDisplay extends Component {
 
                     <Col className="download col-md-2">
                       <Button
+                        className="downloadBtn"
                         onClick={() => {
                           // See download logic comment
                           this.downloadFile(val.FILE_PATH, val.FILE_NAME)
