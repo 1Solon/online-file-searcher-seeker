@@ -33,7 +33,6 @@ export default function UserPage(){
                     axios.post("api/delete-file", {fileID : val.FILE_ID}).then((response) => {
                         console.log("delete file")
                     })
-                    new Promise(resolve => setTimeout(resolve, 1000))
                 })
             }
         })    
@@ -41,22 +40,28 @@ export default function UserPage(){
 
     const deleteUser = ()  => {
         if(window.confirm("Are you sure you want to delete your account?")){
-            deleteAllFiles() 
+            let i = 0
+            while (i < 5) {
+                deleteAllFiles()
+                
+                // Repeats several times to ensure deltion, this is to work around a file system bug present on some systems
+                i++
         
-            // delete user
-            axios.post('/api/delete-user', {userid: localStorage.getItem('id')}).then(console.log("Sucessfully deleted user"))
-            
-            // delete local storage
-            localStorage.removeItem('id')
-            localStorage.removeItem('username')
-            localStorage.removeItem('email')
-            localStorage.setItem('searchTerm', "")
-
-            // Deletes session
-            axios.get('/api/delete-session').then(console.log("Sucessfully deleted session"))
-
-            // Reloads page
-            window.location.reload()
+                // delete user
+                axios.post('/api/delete-user', {userid: localStorage.getItem('id')}).then(console.log("Sucessfully deleted user"))
+                
+                // delete local storage
+                localStorage.removeItem('id')
+                localStorage.removeItem('username')
+                localStorage.removeItem('email')
+                localStorage.setItem('searchTerm', "")
+    
+                // Deletes session
+                axios.get('/api/delete-session').then(console.log("Sucessfully deleted session"))
+    
+                // Reloads page
+                window.location.reload()
+            }
         }
         else{
             console.log("false")
