@@ -278,7 +278,7 @@ app.post("/delete-file", (req, res) => {
         
         try {
           const pathToDelete = result[0].FILE_PATH
-          fs.unlinkSync(`${__dirname}/seeker/files/${pathToDelete}`)
+          fs.unlinkSync(`${__dirname}/seeker/files/${pathToDelete}`, (err) => {})
         } catch (error) {
           console.error("File failed to delete")
         }
@@ -305,7 +305,7 @@ app.post("/delete-user", (req, res) => {
       console.log(err)
     }
     else{
-      console.log("Sucessfully deleted user")
+      console.log("Sucessfully deleted")
     }
   })
   res.status(200).send('User Deleted Sucessfully')
