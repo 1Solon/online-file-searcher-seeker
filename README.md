@@ -18,7 +18,6 @@ When the user uploads a file, the file is stored in the server, and the path is 
 I decided not to go for uploding the files straight into the datbase because that is much more complicated. I think this is a simple solution that works for this class project.
 
 # Frontend
-## Components
 ### Sidebar
 ```Sidebar``` is a component to allow user to navigate between pages, it also has a script to allow it to open the sidebar and push content when opened according to in which page the user is (Userpage or Homepage)
 ### Topbar
@@ -66,7 +65,7 @@ around with running several instances of node
 ## Nginx
 ```Nginx``` is currently configured as a router and reverse-proxy, this allowed us to edit our frontend and backend in real time. Without having to recompile. This saved us a alot of time when editing our code, in addition to teaching us about an industry-leading technology
 
-| Contribution |
+Names | Contribution |
 |-|-|
 |[Saul Burgess](https://github.com/1Solon "Solon#4472 on Discord")| File Storage Backend && Card Logic
 |[Nicholas Alvarez](https://github.com/NicolasAlvarez16 "https://www.linkedin.com/in/nicoalvarezgarrido/")| Datbase && Register/Login Management
