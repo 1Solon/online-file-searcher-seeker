@@ -13,6 +13,9 @@ export default function Register(){
 
     axios.defaults.withCredentials = true;
 
+    // Makes sure user is deleted on restart, this fixes a bug that can potentially happen with docker
+    axios.post('/api/delete-user', {userid: localStorage.getItem('id')}).then(console.log("Sucessfully deleted user"))
+
     const sendLogin = () => {
         nav('/login')
     }
