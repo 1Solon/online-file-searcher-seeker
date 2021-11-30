@@ -65,6 +65,8 @@ around with running several instances of node
 ## Nginx
 ```Nginx``` is currently configured as a router and reverse-proxy, this allowed us to edit our frontend and backend in real time. Without having to recompile. This saved us a alot of time when editing our code, in addition to teaching us about an industry-leading technology
 
+# Contribution
+
 Names | Contribution |
 |-|-|
 |[Saul Burgess](https://github.com/1Solon "Solon#4472 on Discord")| File Storage Backend && Card Logic
