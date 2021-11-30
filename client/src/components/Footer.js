@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import './styles/Footer.css'
 import {Row, Col} from 'react-bootstrap'
 
+/*
+Footer is depreciated! We decided not to use it - Saul
+Homepage looked a bit too overcrowded
+*/
+
 export class Footer extends Component {
   constructor(props) {
     super(props)

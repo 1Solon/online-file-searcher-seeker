@@ -1,23 +1,29 @@
 import React, { useState } from 'react'
 import './styles/FormPopup.css'
 import { Button, Row, Col } from 'react-bootstrap'
-import axios from "axios";
+import axios from "axios"
 import { useNavigate } from 'react-router-dom'
 
+/* 
+FormPopup is a general component for handling user details updates 
+as the name says whenever the button is pressed a form window pops up in the middle 
+*/
 export function FormPopup(){
-    const [updateUsername, setUsername] = useState("");
-    const [updatePassword, setPassword] = useState("");
+    const [updateUsername, setUsername] = useState("")
+    const [updatePassword, setPassword] = useState("")
 
     const nav = useNavigate()
 
-    axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true
     
+    // update details from user 
     const updateDetails = () => {
-        axios.post('/api/update-detials', {
+        axios.post('/api/update-details', {
             userId: localStorage.getItem('id'),
             updateUsername: updateUsername,
             updatePassword: updatePassword
         }).then((response) =>{
+            // error checking
             if(!response.data){
                 alert("ERROR. Make sure a new user and/or password is entered")
             }

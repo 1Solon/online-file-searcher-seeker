@@ -3,6 +3,9 @@ import './styles/TopBar.css'
 import image from './images/Logo.png'
 import {Col} from 'react-bootstrap'
 
+/* TopBar is a general component to display user information such as name if images or username are pressed it 
+brings user to the userpage but its mostly aesthetic 
+*/
 export class TopBar extends Component {
   constructor(props) {
     super(props)

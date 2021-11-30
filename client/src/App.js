@@ -1,10 +1,10 @@
-//  import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Register from './components/Register'
 import Login from './components/Login'
 import HomePage from './components/HomePage'
 import UserPage from './components/UserPage'
 
+// Defines routes, we use React router for handling our pages. This came with... challenges, but ultimatly suceesed in providing a solid program
 function App() {
     return (
         <Router>
@@ -16,7 +16,7 @@ function App() {
                 <Route exact path='/userpage' element={<UserPage/>}/>
             </Routes>
         </Router>
-    );
+    )
 }
 
-export default App;
+export default App

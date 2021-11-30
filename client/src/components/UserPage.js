@@ -5,10 +5,10 @@ import {FormPopup} from './FormPopup'
 import { Button,Row} from 'react-bootstrap'
 import {TopBar} from './TopBar'
 import { useNavigate } from 'react-router-dom'
-import axios from "axios";
+import axios from "axios"
 import image from './images/Logo.png'
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true
 
 export default function UserPage(){
     const nav = useNavigate()   
@@ -19,10 +19,10 @@ export default function UserPage(){
             if(!isSession) {
                 nav('/login')
             }
-        });
-    }, []);
+        })
+    }, [])
 
-    // delete files from front end
+    // delete files for user when the account is deleted 
     const deleteAllFiles = () => {
         axios.get("api/get-files").then((response) => {
 
@@ -38,6 +38,7 @@ export default function UserPage(){
         })    
     }
 
+    // deletes user when he clicks on delete user 
     const deleteUser = ()  => {
         if(window.confirm("Are you sure you want to delete your account?")){
             let i = 0
@@ -96,7 +97,6 @@ export default function UserPage(){
                                             <h6 className="mb-0">Username:</h6>
                                         </div> 
                                          <div className="col-md-9">
-                                            {/* Doggo44 */}
                                             {localStorage.getItem('username')}
                                         </div>
                                     </div>
@@ -108,7 +108,6 @@ export default function UserPage(){
                                         </div>
 
                                         <div className="col-md-9">
-                                            {/* Doggo44 */}
                                             {localStorage.getItem('email')}
                                         </div>
                                     </div>

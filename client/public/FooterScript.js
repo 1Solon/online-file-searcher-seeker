@@ -1,3 +1,4 @@
+// We decided not to use it 
 let footerHide = document.querySelector(".FooterDiv");
 
 // Stores current Y value = 0

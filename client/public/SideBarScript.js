@@ -1,7 +1,7 @@
 let sidebar = document.querySelector("#SidebarComponent")
 let closeBtn = document.querySelector("#btn")
 
-// function to check when user clicks on menu button, opens/closes sidebar
+// function to check when user clicks on menu button, opens/closes sidebar 
 btn.onclick = function(){
     var toggle = sidebar.classList.toggle("active")
     checker(toggle)

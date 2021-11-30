@@ -1,7 +1,7 @@
-import './styles/Login.css';
-import React, { useEffect, useState } from "react";
+import './styles/Login.css'
+import React, { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import axios from "axios";
+import axios from "axios"
 import validator from 'validator'
 
 export default function Register(){
@@ -18,6 +18,7 @@ export default function Register(){
     }
 
     const validateEmail = () => {
+        // Validate email using validator library
         if(validator.isEmail(emailReg)){
             return true
         }
@@ -27,13 +28,14 @@ export default function Register(){
     }
 
     const register = () => {
-
         if(validateEmail()){
+            // Register user
             axios.post('/api/register', {
                 username: usernameReg,
                 email: emailReg,
                 password: passwordReg,
             }).then((response) => {
+                // Return if the user is registered successfully
                 console.log(response.data.userCreated)
                 if(response.data.userCreated){
                     sendLogin()

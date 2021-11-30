@@ -1,5 +1,5 @@
-// same idea as in the sideBar
-// let background = document.querySelector(".body")
+// same idea as in the sideBar 
+// let background = document.querySelector(".body") 
 let background = document.querySelector("#backgroundPopup")
 let popup = document.querySelector("#popup")
 let formOpen = document.querySelector(".Btn2")

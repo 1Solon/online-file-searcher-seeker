@@ -26,15 +26,12 @@ app.use(
     methods: ["GET", "POST"],
     credentials: true,
   })
-);
-
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('seeker/files'));
+)
+// Middleware
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static('seeker/files'))
 app.use(fileUpload())
-
-
-// Parsing the incoming data
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -49,8 +46,13 @@ app.use(
       expires: 1000 * 60 * 60 * 24,
     },
   })
-);
+)
 
+/*
+ Handles /session logic: Session stores the users id, name, email and other various useful pieces of information. Session took us almost a week to get our heads around. In the end
+ we are happy we went with using them. Later on in the project, /session proved to be an invaluable way to pass information too and from functions and maintain data integrity in 
+ secure way 
+*/
 app.get("/session", (req, res) => {
   const raw = req.session.user
   let id = 0
@@ -101,38 +103,39 @@ app.post("/register", (req, res) => {
     if(err){
       res.send({err: err})
     }
+    // Inserting user with hashed password into the database -> This will also make sure that that the user does not use a usename that already exist (the database wont let the username to be repeated)
     db.query("INSERT INTO USERS (USER_NAME, USER_EMAIL, USER_PASSWORD) VALUES (?, ?, ?)", [setUserName, setEmail, hash], (err, result) => {
       if(err){
         res.send({ userCreated: false })
       }
       else{
-        console.log(result)
         res.send({ userCreated: true })
       }
     })
   })
 })
 
+// Handles validating the user -> The username exist, and the password, and username match
 app.post("/login", (req, res) => {
   const username = req.body.username
   const password = req.body.password
   const isLogged = false
-
+  
+  // Checking the user exist -> Otherwise it will send an error
   db.query('SELECT * FROM USERS WHERE USER_NAME = ?;', [username], (err, result) => {
-    console.log(result);
+    console.log(result)
     if (err) {
-      res.send({ err: err });
+      res.send({ err: err })
     }
     if(result.length > 0) {
+      // Compare password in the datbase with the one enterend by the user
       bcrypt.compare(password, result[0].USER_PASSWORD, (error, response) => {
         if(response){
             req.session.user = result
-            res.send(result);
+            res.send(result)
         }
         else{
-          // res.send({message: "Wrong username or password combination!"})
           res.send(isLogged)
-          console.log("Login Failed!")
         }
       })
     }
@@ -143,13 +146,15 @@ app.post("/login", (req, res) => {
   })
 })
 
-app.post('/update-detials', (req, res) => {
+// Handles user update (change username or password)
+app.post('/update-details', (req, res) => {
   const userId = req.body.userId
   let newUsername = req.body.updateUsername
   let newPassword = req.body.updatePassword
   let userUpdated = false
   let passCheck = false
 
+  // If the user didn't change the username -> Use the one in the database
   if(newUsername === ''){
     db.query('SELECT USER_NAME FROM USERS WHERE USER_ID = ?', [userId], (err, result) => {
       if(err){
@@ -161,6 +166,8 @@ app.post('/update-detials', (req, res) => {
       }
     })
   }
+
+  // If user didn't change the password -> Use the one in the database
   if(newPassword == ''){
     passCheck = true
     db.query('SELECT USER_PASSWORD FROM USERS WHERE USER_ID = ?', [userId], (err, result) =>{
@@ -175,6 +182,7 @@ app.post('/update-detials', (req, res) => {
     })
   }
 
+  // If did not enter a new password -> Enter/update the database with the preveious hashed password
   if(!passCheck){
     bcrypt.hash(newPassword, saltRounds, (err, hash) => {
       if(err){
@@ -191,6 +199,7 @@ app.post('/update-detials', (req, res) => {
       })
     })
   }
+  // In the otherhand if the user did enter a new password -> Encrypt the new password entered by the user
   else{
     db.query("UPDATE USERS SET USER_NAME = ? WHERE USER_ID = ?", [newUsername, userId], (err, result) => {
       if(err){
@@ -206,6 +215,11 @@ app.post('/update-detials', (req, res) => {
   }
 })
 
+/*
+ Handles file upload logic: As mentioned below, we decided to store files in a local folder (we called in localStore) with a path refrence inside the database. As you can see, 
+ when we recieve the file we add a random number value to the beginning, this was done to allow the user to insert many of the same file into the program at once
+ (this was also done to save us time), if nothing else we're particularly proud of the effort put into our localStore
+*/
 app.post("/uploadfile", (req, res) => {
   const setUserID = req.session.user[0].USER_ID
 
@@ -265,6 +279,11 @@ app.post("/uploadfile", (req, res) => {
   })
 })
 
+/* 
+Handles delete-file logic: This particualr file caused us a lot of difficulty, early on we dediced to store our files locally in seeker/files, with a path to said file present on the
+database. In hindsight, this was overly complicated, but this idea proved to teach us a lot about how node.js handles file systems, in addition to the various trials and tribulations
+present with synchronous and asynchronous files 
+*/
 app.post("/delete-file", (req, res) => {
   const fileToDelete = req.body.fileID
 
@@ -296,6 +315,7 @@ app.post("/delete-file", (req, res) => {
   })
 })
 
+// Handles delete user logic
 app.post("/delete-user", (req, res) => {
   const userID = req.body.userid
 

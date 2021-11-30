@@ -1,26 +1,28 @@
-import './styles/Login.css';
-import React, { useState, useEffect } from "react";
+import './styles/Login.css'
+import React, { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
-import axios from "axios";
+import axios from "axios"
 
 export default function Login(){
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const [loginStatus, setLoginStatus] = useState("")
 
     const nav = useNavigate()
 
-    axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true
     
     const sendRegister = () => {
         nav('/register')
     }
     
     const login = () => {
+        // Log the user
         axios.post('/api/login', {
             username: username,
             password: password,
         }).then((response) => {
+            // Return if the user is logged succesfully
             if(!response.data){
                 alert('ERROR. Username or password incorrect')
             }
@@ -28,9 +30,10 @@ export default function Login(){
                 nav('/homepage')
                 window.location.reload()
             }
-          });
-      };
+          })
+      }
 
+    // This useffect redirects users who are not logged in away from homepage, this enforces our login system simply
     useEffect(() => {
         axios.get('api/session').then((response) => {
             let isSession = response.data.isSession
@@ -40,8 +43,8 @@ export default function Login(){
             else{
                 nav('/login')
             }
-        });
-    }, []);
+        })
+    }, [])
 
     return(
         <section id="entry-page">

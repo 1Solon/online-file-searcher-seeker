@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
 import image from './images/Logo.png'
-import axios from "axios";
+import axios from "axios"
 
+/* Sidebar is a general component to let user navigate throughout the website
+contains a script to open sidebar and push content, depending on which page the user is, it will use different 
+values to move content accordingly
+*/
 export class SideBar extends Component {
   constructor(props) {
     super(props)
